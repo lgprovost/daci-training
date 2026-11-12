@@ -1,0 +1,56 @@
+[build]
+  command = "node scripts/build.mjs"
+  publish = "dist"
+
+[build.processing.html]
+  pretty_urls = true
+
+[[redirects]]
+  from = "/training-courses"
+  to = "/training-courses.html"
+  status = 200
+[[redirects]]
+  from = "/industries"
+  to = "/industries.html"
+  status = 200
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+[[redirects]]
+  from = "/request-quote"
+  to = "/request-quote.html"
+  status = 200
+[[redirects]]
+  from = "/trainer-login"
+  to = "/trainer-login.html"
+  status = 200
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+[[headers]]
+  for = "/trainer-login*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

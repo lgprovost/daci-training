@@ -1,0 +1,19 @@
+:root {
+  --color-navy: #0B1F44;
+  --color-crimson: #C62828;
+  --color-crimson-hover: #9E1C1C;
+  --color-steel: #1E4E8C;
+  --color-white: #FFFFFF;
+  --color-surface-tint: #F4F6F9;
+  --color-ink: #1E293B;
+  --color-slate: #475569;
+  --color-border: #94A3B8;
+  --color-emerald: #156534;
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --space-1: 8px; --space-2: 16px; --space-3: 24px; --space-4: 32px;
+  --space-6: 48px; --space-8: 64px; --space-10: 80px; --space-12: 96px;
+  --container: 1200px;
+  --radius: 8px;
+  --shadow: 0 16px 48px rgb(11 31 68 / .08);
+}

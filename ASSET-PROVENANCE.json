@@ -1,0 +1,46 @@
+{
+  "mode": "built-in image_gen",
+  "disclosure": "All workshop photographs are AI-generated representative scenes with fictional subjects. They do not document actual DACI events or staff. Brad Leakey is represented only by a labelled monogram placeholder. Logo is an original provisional code-native SVG design awaiting client approval.",
+  "prompts": [
+    "Use case: photorealistic-natural. Representative editorial website workshop image, landscape 16:9. Calm professional adult instructor in navy polo leading onsite workplace communication and de-escalation workshop in bright modern Arizona training room. Six diverse adult healthcare and organizational staff in plain blue scrubs and smart casual clothing sit around a table listening and discussing. Warm natural window light, candid documentary photography. No text, logos, badges or watermark. Fictional subjects, not actual DACI staff or founder.",
+    "Use case: photorealistic-natural. Representative communication training photo, landscape 16:9. Two fictional female healthcare staff in blue scrubs practicing calm respectful conversation with generic facilitator in background, modern Arizona meeting room, candid documentary style. No anger, physical contact, text, logos, badges or watermarks.",
+    "Use case: photorealistic-natural. Representative safety planning photograph, landscape 16:9. Four fictional professionals including HR manager, healthcare leader, school administrator and generic training facilitator collaborate over blank planning cards. Modern warm neutral Arizona office, realistic candid documentary photography. No text, logos, badges or watermarks."
+  ],
+  "assets": [
+    {
+      "file": "hero-home-workshop.webp",
+      "width": 1200,
+      "height": 675,
+      "source": "exec-7bdd7082-b7cc-481f-9eb2-1c90f97dce62.png",
+      "bytes": 83806
+    },
+    {
+      "file": "course-verbal-intervention.webp",
+      "width": 960,
+      "height": 540,
+      "source": "exec-ede94af6-fa35-4a32-8708-cf64ce331f33.png",
+      "bytes": 53664
+    },
+    {
+      "file": "course-nci-training.webp",
+      "width": 960,
+      "height": 540,
+      "source": "exec-7bdd7082-b7cc-481f-9eb2-1c90f97dce62.png",
+      "bytes": 61730
+    },
+    {
+      "file": "industry-leadership-planning.webp",
+      "width": 1200,
+      "height": 675,
+      "source": "exec-732e6031-dd35-4d32-b9aa-80201f1e3bd7.png",
+      "bytes": 87762
+    }
+  ],
+  "suggested_alt": {
+    "hero-home-workshop.webp": "Representative illustration of an instructor leading an onsite workplace communication workshop with healthcare and organizational staff",
+    "course-verbal-intervention.webp": "Representative illustration of healthcare staff practicing calm conversation and respectful communication",
+    "course-nci-training.webp": "Representative illustration of staff discussing situational awareness during an onsite workshop",
+    "industry-leadership-planning.webp": "Representative illustration of organizational leaders planning a staff safety training curriculum",
+    "brad-leakey-portrait.webp": "Brad Leakey founder profile graphic with initials BL; approved portrait pending"
+  }
+}

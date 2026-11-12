@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /trainer-login
+Disallow: /trainer-login.html
+Sitemap: https://[DOMAIN]/sitemap.xml

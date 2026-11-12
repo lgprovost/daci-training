@@ -1,0 +1,14 @@
+{
+  "name": "daci-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Buildless HTML, CSS, and JavaScript for DACI onsite training.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/serve.mjs",
+    "test": "node scripts/check.mjs && node scripts/test-form.mjs",
+    "check:launch": "node scripts/check.mjs --launch"
+  },
+  "engines": { "node": ">=20" }
+}
