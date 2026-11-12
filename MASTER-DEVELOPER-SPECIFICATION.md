@@ -798,3 +798,34 @@ The original brief and the user’s follow-up provide DACI business copy and fou
 - [Nonviolent Crisis Intervention](https://www.crisisprevention.com/our-programs/nonviolent-crisis-intervention/)
 - [Prevention First](https://www.crisisprevention.com/our-programs/prevention-first)
 - [CPI education training brochure](https://www.crisisprevention.com/globalassets/us-ca/resources/pdf/cpi-nci-ebk-0244-ed-1024-us-education-training-solutions-brochure-update_final.pdf)
+
+
+## 10. APPROVED CUSTOMER-JOURNEY EVIDENCE ADDITIONS — NOVEMBER 12, 2026
+
+Render the following additions as static HTML. Keep the quote-page template free of promotional statistics and preserve its course-selection and contact flow.
+
+### Home: CPI-reported outcomes
+
+Insert a compact proof strip immediately after The DACI Difference and before Core CPI-Aligned Training Pathways. Use the existing tinted surface and navy 36px/800 Plus Jakarta Sans numerals. Source text is 14px in slate, with a direct source link and a 44px minimum link target. Use three columns on desktop and stacked number/description rows on mobile; include a subtle divider before the next tinted section.
+
+Heading: “Organizational outcomes reported by CPI.”
+
+- 89% — of schools improved staff skills and confidence
+- 74% — of healthcare facilities reduced challenging behavior
+- 58% — of organizations reduced workers’ compensation claims by more than one-third
+
+Caption: “Source: Crisis Prevention Institute, published organizational outcomes. Results vary by organization. DACI provides onsite training led by a CPI Certified Instructor.” Link the source to https://www.crisisprevention.com/about-us/frequently-asked-questions/. Treat these as CPI-reported organizational outcomes; do not turn the percentages into the size of a reduction or imply they are measured DACI client results. The publisher page does not identify study date, sample, or methodology, so do not invent a research-report title.
+
+### About: curriculum authority
+
+Inside Brad’s credential box, after his credentials, add a restrained callout titled “The curriculum behind the training.” Copy: “Brad’s onsite instruction draws on CPI curricula. Since its founding in 1980, CPI reports reaching over 17 million people globally.” Source: https://www.crisisprevention.com/about-us/. Attribute this reach to CPI.
+
+### Healthcare: dated workplace-risk benchmark
+
+In #healthcare, add a left-column callout titled “Healthcare workplace risk.” Copy: “For 2021–2022, BLS reported an annualized workplace-violence injury rate of 14.2 per 10,000 full-time workers in private healthcare and social assistance, versus 2.9 across private industry—nearly five times the rate.” Follow with: “These figures include cases involving time away from work, restricted duties, or job transfer.” Source: U.S. Bureau of Labor Statistics, 2021–2022, linked to https://www.bls.gov/iif/factsheets/workplace-violence-2021-2022.htm.
+
+Align the healthcare bundle beside the risk context on desktop and place it after that context on mobile. Its CTA is “Select Healthcare Training Bundle →”; preserve the existing industry/course URL parameters and storage merge behavior. Do not reuse the 2018 rates or imply that the benchmark establishes compliance.
+
+### Verification
+
+Check the three edited pages at 375, 768, and 1440 CSS pixels; verify the source links, reading order, and bundle handoff. The request-quote HTML must remain unchanged by this addition. No counter animation, new runtime JavaScript, or external tracking is required.

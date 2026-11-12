@@ -7,7 +7,7 @@ Reviewed November 11, 2026, in the America/Phoenix client timezone.
 - 388 static/data checks pass: route and asset integrity, one H1 per page, unique IDs, persistent labels, image attributes, eight courses and eight industry mappings, structured data, sitemap, maintenance-page scope, and excluded feature checks.
 - Nine quote-module tests pass with mocked responses: field validation, unconfigured endpoint, successful POST payload and confirmation, HTTP error, network error, honeypot, duplicate request suppression, URL/session merge, and focused risk defaults.
 - Total separately gzipped browser JavaScript, including the shared program data: 8,897 bytes, below 10 KB.
-- Total separately gzipped CSS: 7,213 bytes, below 25 KB.
+- Total separately gzipped CSS: 7,570 bytes, below 25 KB.
 
 ## Browser checks
 
@@ -51,3 +51,12 @@ The LCP, CLS, and INP values in the brief are targets. A throttled Mobile 4G fie
 ## Supplied logo update
 
 Replaced the provisional identity in the shared header/footer, maintenance portal, favicon, touch icon, and Open Graph card. All seven pages use versioned asset URLs; the original scaffold filenames also contain the updated artwork. The supplied JPG is retained unchanged. Header/footer wrappers preserve the original profiles, lettering, red A detail, and subtitle in compact horizontal layouts. The footer uses a white plaque. SVG delivery wrappers embed raster renders and are not vector logo masters. Browser checks confirm the header and full portal logo load at mobile/desktop sizes without horizontal overflow; the portal still contains zero inputs.
+
+
+## Customer-journey evidence — November 12, 2026
+
+Added the Home CPI outcomes strip, an attributed CPI history/reach callout inside Brad’s credential box, and the Healthcare BLS 2021–2022 private-industry risk benchmark. All three source links point directly to the publisher pages checked for this update. The healthcare bundle CTA now says “Select Healthcare Training Bundle” and preserves its industry/course query parameters.
+
+The three edited pages were checked at 375, 768, and 1440 CSS pixels: no horizontal overflow, one evidence block per relevant page, and every source-link target is at least 44px tall. Desktop risk/bundle boxes align alongside each other; on mobile the risk context precedes the bundle. Home numerals are 36px/800; sources are 14px. Browser handoff confirms all three healthcare courses are selected while preserving existing saved selections.
+
+All 388 existing static/data checks pass. JavaScript remains 8,897 gzipped bytes and CSS is 7,570 gzipped bytes. The request-quote.html SHA-256 before and after this addition is 358B539E04DA6FC3726A53587EF2538AFEB57A0AD6B0BD2420512A859B7F0E35. No promotional statistic or evidence block is present in the quote page; its markup is byte-for-byte unchanged. No new browser JavaScript or analytics was introduced.

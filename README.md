@@ -66,6 +66,16 @@ CPI publisher information used to review program descriptions and delivery assum
 
 DACI-specific delivery authorization was not established by these publisher pages. The review copy therefore asks visitors to confirm availability during consultation.
 
+## Evidence along the customer journey
+
+The Home page includes a compact CPI-reported outcomes strip between the DACI Difference and the training pathways. About places CPI's global reach beside Brad's instructor credentials, with the tally attributed to CPI. The Healthcare industry section uses BLS's 2021–2022 annualized private-industry workplace-violence rates: 14.2 versus 2.9 per 10,000 full-time workers, including cases involving time away, restricted duties, or job transfer. Its CTA is “Select Healthcare Training Bundle.”
+
+All evidence is rendered in static HTML with direct source links. Source text is 14px, percentage numerals are 36px/800, and the proof strip stacks on mobile. The quote page contains no promotional statistics. Source wording and placement are maintained in `scripts/build.mjs`; component styles are in `css/components.css`.
+
+- [CPI-reported organizational outcomes](https://www.crisisprevention.com/about-us/frequently-asked-questions/)
+- [CPI organizational history](https://www.crisisprevention.com/about-us/)
+- [BLS workplace violence, 2021–2022](https://www.bls.gov/iif/factsheets/workplace-violence-2021-2022.htm)
+
 ## Asset provenance
 
 All logo variants, the favicon, social card, and app icon use the logo supplied by the user. The original JPG is retained in assets/brand; SVG files recompose and embed its raster artwork rather than claiming to be vector originals. Header and footer variants arrange the supplied emblem and wordmark horizontally. The footer uses a white plaque to preserve the original colors. Versioned asset URLs prevent stale immutable-cache branding. Workshop scenes were created with the built-in Imagegen tool using fictional subjects; they do not document actual DACI events or staff. No image portrays a fabricated Brad Leakey. Full generation prompts and dimensions are in `ASSET-PROVENANCE.json`.

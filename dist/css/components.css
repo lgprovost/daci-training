@@ -62,4 +62,21 @@ blockquote { margin: 0; padding-left: 24px; border-left: 4px solid var(--color-s
 .maintenance-badge { display: inline-block; padding: 8px 16px; background: var(--color-navy); color: white; border-radius: 4px; font-size: .625rem; font-weight: 700; letter-spacing: .06em; }
 .no-script { background: var(--color-surface-tint); border-left: 4px solid var(--color-steel); padding: 24px; }
 .image-disclosure { font-size: .625rem; margin: 0; padding: 0 0 8px; text-align: right; max-width: none; }
+.proof-strip { padding-block: 32px; border-bottom: 1px solid #dce2ea; }
+.proof-strip h2 { font-size: 1.125rem; margin-bottom: 24px; }
+.proof-stats { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 32px; margin: 0; }
+.proof-stat + .proof-stat { border-left: 1px solid var(--color-border); padding-left: 32px; }
+.proof-stat dt { color: var(--color-navy); font: 800 36px/1.2 var(--font-heading); letter-spacing: -.02em; margin-bottom: 8px; }
+.proof-stat dd { color: var(--color-ink); font-size: .875rem; margin: 0; max-width: 32ch; }
+.evidence-source { color: var(--color-slate); font-size: .875rem; line-height: 1.6; margin: 16px 0 0; max-width: none; }
+.evidence-source a { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; color: var(--color-steel); }
+.curriculum-authority { border-top: 1px solid #c6d0dc; margin-top: 24px; padding-top: 24px; }
+.curriculum-authority h3, .risk-callout h3 { font-size: 1rem; margin-bottom: 16px; }
+.curriculum-authority > p { font-size: .875rem; margin-bottom: 0; }
+.risk-callout { background: white; border-left: 3px solid var(--color-steel); padding: 24px; margin-top: 24px; border-radius: 0 4px 4px 0; }
+.risk-callout > p { font-size: .875rem; margin-bottom: 16px; }
+.risk-callout > p:last-child { margin-bottom: 0; }
+.risk-definition { color: var(--color-slate); }
+#healthcare .industry-module > .bundle { align-self: end; }
+@media (max-width: 767px) { .proof-stats { grid-template-columns: 1fr; gap: 24px; } .proof-stat + .proof-stat { border-left: 0; border-top: 1px solid #c6d0dc; padding: 24px 0 0; } .proof-stat { display: grid; grid-template-columns: 88px minmax(0,1fr); gap: 16px; align-items: start; } .proof-stat dt { margin: 0; } .proof-stat dd { max-width: none; } .risk-callout { padding: 24px 16px; } }
 @media (max-width: 767px) { .filter-bar { top: 64px; } .filter-scroll { padding-block: 8px; } .card, .pathway-card, .catalog-card { padding: 24px; } .catalog-card { grid-template-columns: 1fr; gap: 24px; } .catalog-card ul { grid-template-columns: 1fr; } .course-aside { border-left: 0; border-top: 1px solid #dce2ea; padding: 24px 0 0; } .selected-strip { bottom: calc(72px + env(safe-area-inset-bottom)); font-size: .75rem; padding: 12px 16px; } .selected-strip .button { padding-inline: 12px; font-size: .75rem; } .industry-tile { flex-wrap: wrap; gap: 8px; padding: 16px; } .industry-tile .arrow { display: none; } .pathway-card .actions { gap: 8px; } }
