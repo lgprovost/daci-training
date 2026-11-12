@@ -36,7 +36,7 @@ The user requested templated values where actual business details were unavailab
 1. Set the real phone display and E.164 number, inquiry email, bare domain, and Formspree endpoint in `js/config.js`.
 2. Create/verify the Formspree destination, allow the intended domain, and test a real delivery with DACI.
 3. Confirm the named program licenses, instructor authorization, and onsite availability, particularly Prevention First and De-Escalation Basics. These two are labeled for availability confirmation in the catalog and selector.
-4. Replace the labeled Brad Leakey monogram with an approved 500×600 portrait. Review the provisional SVG brand system and representative generated workshop photography.
+4. Replace the labeled Brad Leakey monogram with an approved 500×600 portrait. Review the supplied-logo adaptations and representative generated workshop photography.
 5. Run the build and checks, followed by `node scripts/check.mjs --launch`. The launch check intentionally fails while contact placeholders remain.
 6. Verify the generated canonical URLs, social card URL, JSON-LD, sitemap, and robots file against the real domain.
 
@@ -68,4 +68,4 @@ DACI-specific delivery authorization was not established by these publisher page
 
 ## Asset provenance
 
-The SVG logos, favicon, social card, and app icon are provisional original designs. Workshop scenes were created with the built-in Imagegen tool using fictional subjects; they do not document actual DACI events or staff. No image portrays a fabricated Brad Leakey. Full generation prompts and dimensions are in `ASSET-PROVENANCE.json`.
+All logo variants, the favicon, social card, and app icon use the logo supplied by the user. The original JPG is retained in assets/brand; SVG files recompose and embed its raster artwork rather than claiming to be vector originals. Header and footer variants arrange the supplied emblem and wordmark horizontally. The footer uses a white plaque to preserve the original colors. Versioned asset URLs prevent stale immutable-cache branding. Workshop scenes were created with the built-in Imagegen tool using fictional subjects; they do not document actual DACI events or staff. No image portrays a fabricated Brad Leakey. Full generation prompts and dimensions are in `ASSET-PROVENANCE.json`.

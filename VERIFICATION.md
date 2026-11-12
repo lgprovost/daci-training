@@ -46,3 +46,8 @@ Verified in the local browser:
 The real phone, email, domain, and Formspree ID remain placeholders by request. Live delivery to DACI’s inbox was not tested. Public indexing, domain ownership, approved founder photography, and program authorization require business configuration. The success and failure network paths were tested with mocks, without sending leads.
 
 The LCP, CLS, and INP values in the brief are targets. A throttled Mobile 4G field/performance audit and a full assistive-technology conformance audit were not performed; passing these checks is not a claim of complete WCAG certification. Google Fonts require a network connection; local fallback fonts remain available.
+
+
+## Supplied logo update
+
+Replaced the provisional identity in the shared header/footer, maintenance portal, favicon, touch icon, and Open Graph card. All seven pages use versioned asset URLs; the original scaffold filenames also contain the updated artwork. The supplied JPG is retained unchanged. Header/footer wrappers preserve the original profiles, lettering, red A detail, and subtitle in compact horizontal layouts. The footer uses a white plaque. SVG delivery wrappers embed raster renders and are not vector logo masters. Browser checks confirm the header and full portal logo load at mobile/desktop sizes without horizontal overflow; the portal still contains zero inputs.

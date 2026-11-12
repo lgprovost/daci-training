@@ -64,7 +64,7 @@
 .centered-page { min-height: 70vh; display: grid; place-items: center; padding-block: 64px; }
 .maintenance-card { max-width: 560px; text-align: center; padding: 48px; background: white; border: 1px solid #dce2ea; border-radius: var(--radius); box-shadow: var(--shadow); }
 .maintenance-card h1 { font-size: 2rem; }
-.maintenance-card img { margin: 24px auto; height: 64px; width: auto; }
+.maintenance-card img { margin: 24px auto; width: 176px; height: auto; }
 @media (max-width: 1199px) and (min-width: 768px) { .header-inner { gap: 16px; width: calc(100% - 32px); } .brand { flex-basis: 160px; } .brand img { width: 160px; } .primary-nav { gap: 16px; } .header-actions { gap: 8px; } .header-phone { display: none; } .header-actions .button { padding-inline: 12px; } .primary-nav a { font-size: .75rem; } .hero-grid { gap: 32px; } }
 @media (min-width: 768px) and (max-width: 1023px) { .container { width: calc(100% - 40px); } .grid { grid-template-columns: repeat(8,minmax(0,1fr)); gap: 20px; } .header-actions > .button-primary { display: none; } .hero-grid { grid-template-columns: 1.1fr 1fr; gap: 24px; } .hero-copy h1 { font-size: 2.25rem; } .hero .quick-path { padding: 24px; } .footer-grid { grid-template-columns: repeat(2,1fr); } .industry-module, .leadership { gap: 32px; } }
 @media (max-width: 767px) {

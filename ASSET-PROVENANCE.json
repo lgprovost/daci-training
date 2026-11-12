@@ -1,6 +1,6 @@
 {
   "mode": "built-in image_gen",
-  "disclosure": "All workshop photographs are AI-generated representative scenes with fictional subjects. They do not document actual DACI events or staff. Brad Leakey is represented only by a labelled monogram placeholder. Logo is an original provisional code-native SVG design awaiting client approval.",
+  "disclosure": "All workshop photographs are AI-generated representative scenes with fictional subjects. They do not document actual DACI events or staff. Brad Leakey is represented only by a labelled monogram placeholder. All logo variants now use the actual logo supplied by the user; see branding for adaptation details.",
   "prompts": [
     "Use case: photorealistic-natural. Representative editorial website workshop image, landscape 16:9. Calm professional adult instructor in navy polo leading onsite workplace communication and de-escalation workshop in bright modern Arizona training room. Six diverse adult healthcare and organizational staff in plain blue scrubs and smart casual clothing sit around a table listening and discussing. Warm natural window light, candid documentary photography. No text, logos, badges or watermark. Fictional subjects, not actual DACI staff or founder.",
     "Use case: photorealistic-natural. Representative communication training photo, landscape 16:9. Two fictional female healthcare staff in blue scrubs practicing calm respectful conversation with generic facilitator in background, modern Arizona meeting room, candid documentary style. No anger, physical contact, text, logos, badges or watermarks.",
@@ -42,5 +42,67 @@
     "course-nci-training.webp": "Representative illustration of staff discussing situational awareness during an onsite workshop",
     "industry-leadership-planning.webp": "Representative illustration of organizational leaders planning a staff safety training curriculum",
     "brad-leakey-portrait.webp": "Brad Leakey founder profile graphic with initials BL; approved portrait pending"
+  },
+  "branding": {
+    "source": "C:/Users/Luke.Provost/Downloads/daci_logo.jpg",
+    "sourceCopiedUnchanged": true,
+    "sourceDimensions": {
+      "width": 1164,
+      "height": 1095
+    },
+    "method": "Faithful SVG crop/recomposition wrappers preserve supplied JPEG artwork. Navbar, footer and favicon wrappers embed compact 2× PNG renderings of the SVG composition for efficient delivery; primary embeds the original JPEG. PNGs are rendered from the code-native SVG wrappers using Sharp. No logo letters or emblem paths redrawn or synthesized. Footer uses a white plaque. SVG files contain raster artwork and are not original vector logo masters.",
+    "adaptations": {
+      "navbar": "Original profiles emblem beside original DACI letters and exact two-line subtitle, 220×64.",
+      "footer": "Same compact logo on a white rounded plaque, 240×70.",
+      "primary": "Original complete stacked artwork at 220×210 with aspect ratio preserved.",
+      "favicon": "Original profiles emblem on a white 64×64 canvas.",
+      "apple": "Original profiles emblem on a white 180×180 canvas.",
+      "openGraph": "Original stacked logo on white plaque with navy/crimson website typography, 1200×630."
+    },
+    "files": [
+      {
+        "filename": "daci-logo-navbar-v2.svg",
+        "width": 220,
+        "height": 64,
+        "bytes": 30110
+      },
+      {
+        "filename": "daci-logo-primary-v2.svg",
+        "width": 220,
+        "height": 210,
+        "bytes": 181497
+      },
+      {
+        "filename": "daci-logo-footer-white-v2.svg",
+        "width": 240,
+        "height": 70,
+        "bytes": 34902
+      },
+      {
+        "filename": "favicon-v2.svg",
+        "width": 64,
+        "height": 64,
+        "bytes": 11031
+      },
+      {
+        "filename": "apple-touch-icon-v2.png",
+        "width": 180,
+        "height": 180,
+        "bytes": 35731
+      },
+      {
+        "filename": "daci-og-share-card-v2.png",
+        "width": 1200,
+        "height": 630,
+        "bytes": 243530
+      },
+      {
+        "filename": "daci-logo-source.jpg",
+        "width": 1164,
+        "height": 1095,
+        "bytes": 135546
+      }
+    ],
+    "cache": "All new references should use -v2 filenames; original scaffold filenames have also been updated."
   }
 }
