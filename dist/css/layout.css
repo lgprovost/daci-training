@@ -56,7 +56,7 @@
 .industry-module .bundle { background: white; border: 1px solid #dce2ea; padding: 32px; border-radius: var(--radius); }
 .industry-module ul { margin-bottom: 32px; }
 .leadership { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: start; }
-.portrait { width: 100%; border-radius: var(--radius); }
+.portrait { width: 100%; aspect-ratio: 5 / 6; object-fit: cover; object-position: center; border-radius: var(--radius); }
 .reasons { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
 .reasons article { padding-block: 24px; border-top: 1px solid #c6d0dc; }
 .reasons h3 { font-size: 1rem; margin-bottom: 8px; }

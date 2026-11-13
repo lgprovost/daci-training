@@ -1,6 +1,6 @@
 {
   "mode": "built-in image_gen",
-  "disclosure": "All workshop photographs are AI-generated representative scenes with fictional subjects. They do not document actual DACI events or staff. Brad Leakey is represented only by a labelled monogram placeholder. All logo variants now use the actual logo supplied by the user; see branding for adaptation details.",
+  "disclosure": "All workshop photographs are AI-generated representative scenes with fictional subjects. They do not document actual DACI events or staff. Brad Leakey’s founder portrait is a real photograph supplied by the user for provisional use. All logo variants now use the actual logo supplied by the user; see branding for adaptation details.",
   "prompts": [
     "Use case: photorealistic-natural. Representative editorial website workshop image, landscape 16:9. Calm professional adult instructor in navy polo leading onsite workplace communication and de-escalation workshop in bright modern Arizona training room. Six diverse adult healthcare and organizational staff in plain blue scrubs and smart casual clothing sit around a table listening and discussing. Warm natural window light, candid documentary photography. No text, logos, badges or watermark. Fictional subjects, not actual DACI staff or founder.",
     "Use case: photorealistic-natural. Representative communication training photo, landscape 16:9. Two fictional female healthcare staff in blue scrubs practicing calm respectful conversation with generic facilitator in background, modern Arizona meeting room, candid documentary style. No anger, physical contact, text, logos, badges or watermarks.",
@@ -41,7 +41,7 @@
     "course-verbal-intervention.webp": "Representative illustration of healthcare staff practicing calm conversation and respectful communication",
     "course-nci-training.webp": "Representative illustration of staff discussing situational awareness during an onsite workshop",
     "industry-leadership-planning.webp": "Representative illustration of organizational leaders planning a staff safety training curriculum",
-    "brad-leakey-portrait.webp": "Brad Leakey founder profile graphic with initials BL; approved portrait pending"
+    "brad-leakey-founder-v1.webp": "Brad Leakey, DACI Founder and Lead Instructor"
   },
   "branding": {
     "source": "C:/Users/Luke.Provost/Downloads/daci_logo.jpg",
@@ -114,5 +114,14 @@
     },
     "method": "Code-native SVG composition, rendered with Sharp. Supplied original logo embedded unchanged. Nationwide wording and confirmed intended domain replace the previous regional service-area wording.",
     "date": "2026-11-13"
+  },
+  "founderPortrait": {
+    "file": "brad-leakey-founder-v1.webp",
+    "width": 3024,
+    "height": 4032,
+    "bytes": 671084,
+    "source": "C:/Users/Luke.Provost/Downloads/IMG_20260809_231743 (2).heic",
+    "status": "User supplied for provisional use",
+    "method": "HEIC decoded with pillow-heif, orientation normalized, and converted to WebP. The website and Figma use a centered 5:6 display crop of the supplied photograph. Embedded capture metadata is omitted from the delivery asset."
   }
 }

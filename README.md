@@ -32,7 +32,7 @@ Level 3 is restricted to law enforcement/corrections and is not automatically in
 2. Configure and verify the Formspree destination and set `formEndpoint`; send a real delivery test. The current page discloses that submission is unavailable and blocks requests while email/endpoint are pending.
 3. Connect domain DNS and public hosting access for `dacitraining.com`; canonical metadata alone does not connect a domain. The existing Sites review audience remains private. Test all seven QR destinations before printing.
 4. Approve provisional duration and curriculum assumptions, including Level 2’s 12-hour midpoint estimate. The client follow-up report and QR destination CSV are supplied alongside this repository.
-5. Obtain an approved founder portrait if replacing the labeled initials graphic.
+5. The user-supplied founder photo is installed for provisional use. Replace its versioned asset if a new headshot is approved.
 6. Run `node scripts/check.mjs --launch` once contact settings are complete. It is expected to fail until then.
 
 ## Hosting and assets
