@@ -26,6 +26,30 @@
   to = "/trainer-login.html"
   status = 200
 [[redirects]]
+  from = "/programs/daci-level-1"
+  to = "/programs/daci-level-1.html"
+  status = 200
+[[redirects]]
+  from = "/programs/daci-level-2"
+  to = "/programs/daci-level-2.html"
+  status = 200
+[[redirects]]
+  from = "/programs/daci-level-3"
+  to = "/programs/daci-level-3.html"
+  status = 200
+[[redirects]]
+  from = "/programs/daci-youth"
+  to = "/programs/daci-youth.html"
+  status = 200
+[[redirects]]
+  from = "/programs/daci-memory"
+  to = "/programs/daci-memory.html"
+  status = 200
+[[redirects]]
+  from = "/programs/daci-retail"
+  to = "/programs/daci-retail.html"
+  status = 200
+[[redirects]]
   from = "/*"
   to = "/404.html"
   status = 404

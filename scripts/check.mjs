@@ -11,12 +11,12 @@ let checks = 0;
 function check(condition,message) { assert.ok(condition,message); checks++; }
 async function files(dir) { const out=[]; for(const entry of await readdir(dir,{withFileTypes:true})) { const file=path.join(dir,entry.name); if(entry.isDirectory()) out.push(...await files(file)); else out.push(file); } return out; }
 const ids=new Set(COURSES.map(c=>c.id));
-check(ids.size===8,'Exactly eight distinct course IDs');
+check(ids.size===6,'Exactly six distinct DACI program IDs');
 check(INDUSTRIES.length===8,'Exactly eight industries');
-for(const c of COURSES) { check(c.outcomes.length===4,`${c.id}: four learning outcomes`); check(c.industries.every(id=>INDUSTRIES.some(i=>i.id===id)),`${c.id}: valid industry IDs`); }
+for(const c of COURSES) { check(c.outcomes.length>=4,`${c.id}: learning outcomes supplied`); check(c.modules.length>=6,`${c.id}: curriculum modules supplied`); check(c.industries.every(id=>INDUSTRIES.some(i=>i.id===id)),`${c.id}: valid industry IDs`); }
 for(const i of INDUSTRIES) check(i.courses.every(id=>ids.has(id)),`${i.id}: valid course bundle`);
-const htmlFiles=(await readdir(root)).filter(n=>n.endsWith('.html'));
-check(htmlFiles.length===7,'Six primary pages and branded 404');
+const htmlFiles=(await files(root)).filter(n=>n.endsWith('.html')&&!n.includes(`${path.sep}dist${path.sep}`)).map(n=>path.relative(root,n));
+check(htmlFiles.length===13,'Six primary pages, six program pages, and branded 404');
 for(const name of htmlFiles) {
  const html=await readFile(path.join(root,name),'utf8');
  check(/<body><a href="#main-content" class="skip-link">/.test(html),`${name}: skip link is the first body element`);
@@ -28,6 +28,8 @@ for(const name of htmlFiles) {
  check(new Set(foundIds).size===foundIds.length,`${name}: unique element IDs`);
  check(!/\b(?:online|virtual|self-paced)\b/i.test(html),`${name}: onsite scope`);
  check(!/type="(?:password|credit-card)"|\bshopping cart\b/i.test(html),`${name}: no excluded account or payment UI`);
+ check(!/href="tel:|type="tel"|direct_phone|\[PHONE_|\bPhoenix\b|\bArizona\b|CPI-certified/.test(html),`${name}: email-only nationwide DACI copy`);
+ check(html.includes('https://dacitraining.com'),`${name}: permanent canonical domain`);
  for(const match of html.matchAll(/(?:src|href)="(\/[^"?#]*)(?:[?#][^"]*)?"/g)) {
   const route=match[1];
   const target=path.join(root,route==='/'?'index.html':route.slice(1)+(path.extname(route)?'':'.html'));
@@ -35,17 +37,23 @@ for(const name of htmlFiles) {
  }
  for(const match of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)) {
   const data=JSON.parse(match[1]);
-  check(data.hasOfferCatalog.itemListElement.length===8,`${name}: eight schema catalog entries`);
+  check(data.hasOfferCatalog.itemListElement.length===6,`${name}: six schema catalog entries`);
   check(!('address' in data),`${name}: no invented address`);
+  check(!('telephone' in data)&&!('geo' in data)&&data.areaServed.name==='United States',`${name}: nationwide email-only schema`);
  }
 }
 const trainer=await readFile(path.join(root,'trainer-login.html'),'utf8');
 check(!/<(?:input|form|textarea|select)\b/.test(trainer),'Trainer portal has zero inputs or forms');
 check(trainer.includes('noindex, nofollow'),'Trainer portal is excluded from search');
 const sitemap=await readFile(path.join(root,'sitemap.xml'),'utf8');
-check((sitemap.match(/<url>/g)||[]).length===5&&!sitemap.includes('trainer-login'),'Sitemap includes exactly five public routes');
+check((sitemap.match(/<url>/g)||[]).length===11&&!sitemap.includes('trainer-login'),'Sitemap includes five main routes and six permanent program pages');
 const formHtml=await readFile(path.join(root,'request-quote.html'),'utf8');
-check((formHtml.match(/name="selected_courses"/g)||[]).length===8,'Quote matrix has eight checkboxes');
+check((formHtml.match(/name="selected_courses"/g)||[]).length===6,'Quote matrix has six checkboxes');
+check(!/proof-stat|14\.2|89%|74%|58%|17 million/.test(formHtml),'Quote journey contains zero promotional statistics');
+check(formHtml.includes('level3_eligibility'),'Level 3 has an eligibility confirmation');
+check(formHtml.includes('Quote submission is not available yet.'),'Pending quote service is disclosed before entry');
+check(COURSES.find(c=>c.id==='daci-level-3').industries.join(',')==='security','Level 3 is mapped only to law enforcement/corrections sector');
+check(!INDUSTRIES.some(i=>i.courses.includes('daci-level-3')),'Level 3 is not automatically recommended to broad industry bundles');
 for(const match of formHtml.matchAll(/<(?:input|select|textarea)\b[^>]*id="([^"]+)"[^>]*>/g)) {
  if(match[0].includes('type="hidden"')) continue;
  check(formHtml.includes(`for="${match[1]}"`),`Persistent label for ${match[1]}`);
@@ -58,7 +66,7 @@ for(const file of jsFiles) {
  // Strip the static module declarations, then parse without executing browser code.
  new vm.Script(code.replace(/^import .*;\r?$/gm,'').replace(/^export /gm,''),{filename:file});
  check(true,`JavaScript syntax: ${path.basename(file)}`);
- sizes.jsGzipBytes+=gzipSync(code).length;
+ sizes.jsGzipBytes+=gzipSync(await readFile(path.join(root,'dist',path.relative(root,file)))).length;
 }
 for(const file of cssFiles) sizes.cssGzipBytes+=gzipSync(await readFile(file)).length;
 check(sizes.jsGzipBytes<10240,`JavaScript gzip budget: ${sizes.jsGzipBytes} bytes < 10KB`);

@@ -10,7 +10,7 @@ const selected = new Set([...readSelection(), ...(params.get('courses') || '').s
 const sector = INDUSTRIES.find(item => item.id === params.get('industry'));
 if (sector) industry.value = sector.id;
 // Risk-based starting points never select every physical course at once.
-const riskDefaults = { prevention: ['reframing-behavior'], verbal: ['verbal-intervention'], physical: ['nonviolent-crisis-intervention'], specialty: ['dementia-capable-care'] };
+const riskDefaults = { verbal: ['daci-level-1'], physical: ['daci-level-2'], specialty: ['daci-memory'] };
 const risk = params.get('risk');
 if (riskDefaults[risk]) {
   const relevant = sector?.courses.filter(id => COURSES.find(c => c.id === id).category === risk) || [];
@@ -44,7 +44,7 @@ function updateSummary(announce = true) {
 function recommend() {
   const match = INDUSTRIES.find(item => item.id === industry.value);
   form.querySelectorAll('[data-recommendation]').forEach(el => { el.hidden = !match?.courses.includes(el.dataset.recommendation); });
-  document.querySelector('[data-recommendation-status]').textContent = match ? `${match.courses.length} programs recommended for ${match.name}. You can select any combination.` : 'Select an industry to see suggested programs.';
+  document.querySelector('[data-recommendation-status]').textContent = match ? `${match.courses.length} programs recommended for ${match.name}. Review program eligibility before selecting specialist training.` : 'Select an industry to see suggested programs.';
 }
 controls.forEach(input => input.addEventListener('change', () => updateSummary()));
 industry.addEventListener('change', recommend);
@@ -74,7 +74,7 @@ form.addEventListener('submit', async e => {
   message.hidden = true;
   const required = {
     organization_name: 'Enter your organization name.', contact_name_title: 'Enter your name and title.',
-    work_email: 'Enter your work email address.', direct_phone: 'Enter a direct phone number.',
+    work_email: 'Enter your work email address.',
     training_location: 'Enter the onsite training city or facility.', industry_sector: 'Choose your industry.',
     participant_count: 'Enter the number of participants.'
   };
@@ -86,15 +86,15 @@ form.addEventListener('submit', async e => {
   });
   const email = form.elements.work_email;
   if (email.value && !email.validity.valid) { showError(email.id, 'Enter a valid email address, such as name@organization.com.'); firstError ||= email; }
-  const phone = form.elements.direct_phone;
-  if (phone.value && phone.value.replace(/\D/g,'').length < 7) { showError(phone.id, 'Enter a phone number with at least seven digits.'); firstError ||= phone; }
+  const restricted = controls.find(input=>input.value==='daci-level-3' && input.checked);
+  if (restricted && form.elements.level3_eligibility?.value !== 'confirmed') { showError('level3_eligibility', 'Confirm that the Level 3 participants are law enforcement or corrections personnel.'); firstError ||= form.elements.level3_eligibility; }
   const count = form.elements.participant_count;
   if (count.value && (!Number.isInteger(Number(count.value)) || Number(count.value) < 1)) { showError(count.id, 'Enter a whole number of at least 1.'); firstError ||= count; }
   if (!controls.some(input => input.checked)) { showError('course-matrix', 'Select at least one training program.'); firstError ||= controls[0]; }
   if (firstError) { firstError.focus(); return; }
   if (form.elements._gotcha.value) return;
-  if (!/^https:\/\/formspree\.io\/f\/[A-Za-z0-9]+$/.test(SITE_CONFIG.formEndpoint)) {
-    message.textContent = 'Quote requests are temporarily unavailable. Your training selections are saved for this visit. Please use the contact options below when available.';
+  if (!/^https:\/\/formspree\.io\/f\/[A-Za-z0-9]+$/.test(SITE_CONFIG.formEndpoint) || SITE_CONFIG.inquiryEmail.includes('[')) {
+    message.textContent = 'Quote submission is not available yet. Your training selections are saved for this visit. DACI’s email contact and request service are being finalized.';
     message.hidden = false; message.focus(); return;
   }
   const submit = form.querySelector('[type=submit]');

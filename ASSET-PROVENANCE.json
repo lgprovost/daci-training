@@ -104,5 +104,15 @@
       }
     ],
     "cache": "All new references should use -v2 filenames; original scaffold filenames have also been updated."
+  },
+  "nationwideSocialCard": {
+    "filename": "daci-og-share-card-v3.png",
+    "source": "daci-og-share-card-v3.svg",
+    "dimensions": {
+      "width": 1200,
+      "height": 630
+    },
+    "method": "Code-native SVG composition, rendered with Sharp. Supplied original logo embedded unchanged. Nationwide wording and confirmed intended domain replace the previous regional service-area wording.",
+    "date": "2026-11-13"
   }
 }

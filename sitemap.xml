@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://[DOMAIN]/</loc></url>
-  <url><loc>https://[DOMAIN]/training-courses</loc></url>
-  <url><loc>https://[DOMAIN]/industries</loc></url>
-  <url><loc>https://[DOMAIN]/about</loc></url>
-  <url><loc>https://[DOMAIN]/request-quote</loc></url>
+  <url><loc>https://dacitraining.com/</loc></url>
+  <url><loc>https://dacitraining.com/training-courses</loc></url>
+  <url><loc>https://dacitraining.com/industries</loc></url>
+  <url><loc>https://dacitraining.com/about</loc></url>
+  <url><loc>https://dacitraining.com/request-quote</loc></url>
+  <url><loc>https://dacitraining.com/programs/daci-level-1</loc></url>
+  <url><loc>https://dacitraining.com/programs/daci-level-2</loc></url>
+  <url><loc>https://dacitraining.com/programs/daci-level-3</loc></url>
+  <url><loc>https://dacitraining.com/programs/daci-youth</loc></url>
+  <url><loc>https://dacitraining.com/programs/daci-memory</loc></url>
+  <url><loc>https://dacitraining.com/programs/daci-retail</loc></url>
 </urlset>

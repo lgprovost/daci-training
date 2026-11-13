@@ -1,3 +1,17 @@
+# Current approved revision — November 13, 2026
+
+This revision supersedes conflicting catalog, contact, geography, and SEO copy in the original brief below. Follow the current generated site and `data/programs-config.js` as the implementation source of truth.
+
+- Six programs: DACI Level 1, Level 2, Level 3, Youth, Memory, and Retail, each with a permanent `/programs/daci-…` page.
+- Nationwide onsite delivery; email-only contact; remove all phone links and phone fields. Public DACI email and form endpoint remain pending. Disclose unavailability and block delivery until configured.
+- Intended domain: `dacitraining.com`. Seven QR destinations mean homepage plus six program pages, pending client confirmation and domain setup.
+- Level 3 is law enforcement/corrections only, with eligibility confirmation in the quote builder and no broad industry recommendations.
+- Brad's curriculum takes precedence. Youth and Memory use concise CPI-derived topic/outcome summaries. CPI credentials, research outcomes, and global reach must retain CPI attribution.
+- Duration assumptions: Level 1 source tiers 2/4/8 hours and instructor 16–24; Level 2 provisional 12-hour midpoint of 8/16, advanced 24, instructor 40; Level 3 24/40/80; Youth 8, Memory 8, Retail 4 hours as clearly labeled planning estimates.
+- Quote page remains free of promotional statistics. Current data maps, meaningful checks, form tests, and static metadata are updated for six programs.
+
+---
+
 # MASTER DEVELOPER SPECIFICATION PROMPT: DACI (De-Escalation & Crisis Intervention)
 
 > **Instructions for AI Coding Assistant (VS Code / Claude 3.5 Sonnet / Gemini Code Assist):**
