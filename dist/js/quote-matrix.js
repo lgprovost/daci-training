@@ -94,7 +94,7 @@ form.addEventListener('submit', async e => {
   if (firstError) { firstError.focus(); return; }
   if (form.elements.botcheck.checked) return;
   if (!isQuoteServiceConfigured()) {
-    message.textContent = 'Quote submission is not available yet. Your training selections are saved for this visit. DACI’s email contact and request service are being finalized.';
+    message.textContent = 'Quote submission is not available yet. Your training selections are saved for this visit. Please email DACI at info@dacitraining.com to request a quote.';
     message.hidden = false; message.focus(); return;
   }
   const submit = form.querySelector('[type=submit]');

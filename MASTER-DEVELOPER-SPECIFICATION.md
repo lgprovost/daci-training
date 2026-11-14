@@ -3,7 +3,7 @@
 This revision supersedes conflicting catalog, contact, geography, and SEO copy in the original brief below. Follow the current generated site and `data/programs-config.js` as the implementation source of truth.
 
 - Six programs: DACI Level 1, Level 2, Level 3, Youth, Memory, and Retail, each with a permanent `/programs/daci-…` page.
-- Nationwide onsite delivery; email-only contact; remove all phone links and phone fields. Web3Forms replaces Formspree. Use https://api.web3forms.com/submit with a Web3Forms access key and confirmed recipient inbox. Public DACI email and access key remain pending. Disclose unavailability and block delivery until configured.
+- Nationwide onsite delivery; email-only contact; remove all phone links and phone fields. Web3Forms replaces Formspree. Use https://api.web3forms.com/submit with a Web3Forms access key and confirmed recipient inbox. Public DACI email is info@dacitraining.com. The Web3Forms access key remains pending. Disclose unavailability and block delivery until configured.
 - Intended domain: `dacitraining.com`. Seven QR destinations mean homepage plus six program pages, pending client confirmation and domain setup.
 - Level 3 is law enforcement/corrections only, with eligibility confirmation in the quote builder and no broad industry recommendations.
 - Brad's curriculum takes precedence. Youth and Memory use concise CPI-derived topic/outcome summaries. CPI credentials, research outcomes, and global reach must retain CPI attribution.

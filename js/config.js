@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   businessName: 'DACI — De-Escalation & Crisis Intervention',
   shortName: 'DACI',
-  inquiryEmail: '[EMAIL_INQUIRY]',
+  inquiryEmail: 'info@dacitraining.com',
   domain: 'dacitraining.com',
   serviceArea: 'Nationwide (Live Onsite Group Training)',
   cpiCredential: 'Certified Crisis Prevention Institute (CPI) Instructor',
