@@ -8,7 +8,7 @@ Run from this directory: `node scripts/build.mjs`, `node scripts/check.mjs`, and
 
 ## Source of truth
 
-- `data/programs-config.js`: six DACI programs, intended learning outcomes, curriculum modules, duration estimates, CPI references, and eight industry mappings.
+- `data/programs-config.js`: six DACI programs, intended learning outcomes, curriculum modules, duration estimates, original DACI descriptions, and eight industry mappings.
 - `scripts/build.mjs`: shared page content, permanent program routes, metadata, sitemap, and schema.
 - `js/config.js`: confirmed intended domain `dacitraining.com`, confirmed inquiry email `info@dacitraining.com`, and Web3Forms endpoint, and pending `web3formsAccessKey`. No phone configuration or phone field.
 - `js/quote-matrix.js`: course selection, URL/storage hydration, validation, Level 3 eligibility confirmation, and delivery handling.
@@ -24,7 +24,7 @@ The builder renders all curriculum content as static HTML and emits a smaller br
 - DACI Memory: `/programs/daci-memory`
 - DACI Retail: `/programs/daci-retail`
 
-Level 3 is restricted to law enforcement/corrections and is not automatically included in any broad industry bundle. Youth and Memory use editorial summaries of official CPI topics. Course descriptions do not establish a CPI credential for DACI's independent program names.
+Level 3 is restricted to law enforcement/corrections and is not automatically included in any broad industry bundle. Youth, Memory, and Retail use original DACI marketing descriptions. Brad must confirm the lesson plans; these descriptions do not reproduce or establish a license to CPI curricula. Course descriptions do not establish a CPI credential for DACI's independent program names.
 
 ## Remaining public launch requirements
 

@@ -6,7 +6,7 @@ This revision supersedes conflicting catalog, contact, geography, and SEO copy i
 - Nationwide onsite delivery; email-only contact; remove all phone links and phone fields. Web3Forms replaces Formspree. Use https://api.web3forms.com/submit with a Web3Forms access key and confirmed recipient inbox. Public DACI email is info@dacitraining.com. The Web3Forms access key remains pending. Disclose unavailability and block delivery until configured.
 - Intended domain: `dacitraining.com`. Seven QR destinations mean homepage plus six program pages, pending client confirmation and domain setup.
 - Level 3 is law enforcement/corrections only, with eligibility confirmation in the quote builder and no broad industry recommendations.
-- Brad's curriculum takes precedence. Youth and Memory use concise CPI-derived topic/outcome summaries. CPI credentials, research outcomes, and global reach must retain CPI attribution.
+- Brad's curriculum takes precedence. Public descriptions for Youth, Memory, and Retail use original DACI wording. Do not reproduce CPI course copy, proprietary models, diagrams, worksheets, branded curricula, or technique instructions. Brad must confirm the actual lesson plans. CPI credentials, research outcomes, and global reach must retain CPI attribution.
 - Duration assumptions: Level 1 source tiers 2/4/8 hours and instructor 16–24; Level 2 approved alternatives: 8-hour or 16-hour certification, advanced 24, instructor 40; Level 3 24/40/80; Youth 8, Memory 8, Retail 4 hours as clearly labeled planning estimates.
 - Quote page remains free of promotional statistics. Current data maps, meaningful checks, form tests, and static metadata are updated for six programs.
 

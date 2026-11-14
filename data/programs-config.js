@@ -1,11 +1,4 @@
-// Shared source of truth for DACI program pages, selections, and industry bundles.
-export const CURRICULUM_SOURCES = {
-  "cpiEducation": "https://www.crisisprevention.com/globalassets/us-ca/resources/pdf/cpi-nci-ebk-0244-ed-1024-us-education-training-solutions-brochure-update_final.pdf",
-  "cpiVerbal": "https://www.crisisprevention.com/our-programs/verbal-intervention/",
-  "cpiDementia": "https://www.crisisprevention.com/our-programs/dementia-capable-care/",
-  "cpiDementiaTopics": "https://www.crisisprevention.com/globalassets/us-ca/resources/pdf/dc-dementia-training-requirements-direct-care-workers-bill-325_alignment.pdf",
-  "cpiIntermediate": "https://www.crisisprevention.com/our-programs/nonviolent-crisis-prevention-with-intermediate-physical-skills/"
-};
+// Shared source of truth. Public descriptions use DACI editorial copy; no CPI curriculum is reproduced.
 export const COURSES = [
   {
     "id": "daci-level-1",
@@ -205,50 +198,45 @@ export const COURSES = [
     "name": "DACI Youth",
     "subtitle": "Adolescent Crisis Prevention, Assessment, De-Escalation & Therapeutic Support",
     "scope": "Hands-off youth support",
-    "overview": "Build a shared approach to recognizing distress, responding calmly, and supporting young people through difficult moments. Practice communication and prevention strategies within a hands-off policy.",
+    "overview": "Help youth-serving teams notice concerns early, listen without judgment, and offer clear choices. Rehearse hands-off responses for difficult moments with young people.",
     "audience": "Educators, behavioral health professionals, residential treatment staff, juvenile care providers, and other youth-serving teams.",
     "outcomes": [
-      "Identify early distress and assess behavioral risk.",
-      "Match supportive responses to the level of escalation.",
-      "Use calm communication and respectful limits.",
-      "Choose non-physical strategies that support safety.",
-      "Restore rapport and learn together after an incident."
+      "Notice changes that may signal a young person needs help.",
+      "Check immediate safety needs before choosing a response.",
+      "Offer clear choices and respectful limits.",
+      "Seek help from colleagues when needed.",
+      "Plan a respectful check-in after a difficult interaction."
     ],
     "modules": [
       {
-        "title": "Distress, behavior & risk",
-        "description": "Explore how perceived threats and stress can affect behavior; identify opportunities for prevention."
+        "title": "Noticing changes early",
+        "description": "Discuss changes in participation, speech, or activity that may warrant a check-in."
       },
       {
-        "title": "Recognizing escalation",
-        "description": "Practice noticing changes in behavior and choosing a supportive response."
+        "title": "Checking the situation",
+        "description": "Consider immediate needs, nearby people, and available help before responding."
       },
       {
-        "title": "The influence of adult responses",
-        "description": "Consider underlying causes and how staff behavior can shape an interaction."
+        "title": "Preparing your own response",
+        "description": "Notice your tone and assumptions before approaching a young person."
       },
       {
-        "title": "Supportive communication",
-        "description": "Prepare for difficult conversations using clear, calm, respectful communication."
+        "title": "Listening before problem-solving",
+        "description": "Rehearse short questions, pauses, and explanations that leave room for a reply."
       },
       {
-        "title": "Responding to resistance",
-        "description": "Practice limits and communication strategies matched to the situation."
+        "title": "Offering choices & boundaries",
+        "description": "Practice explaining realistic options and what happens next."
       },
       {
-        "title": "Hands-off safety decisions",
-        "description": "Use verbal and environmental responses that fit the assessed risk."
+        "title": "Getting the right help",
+        "description": "Plan how staff will seek support while following a hands-off policy."
       },
       {
-        "title": "Recovery & reflective practice",
-        "description": "Rebuild rapport after a crisis and identify improvements for future support."
+        "title": "Following up with the young person",
+        "description": "Discuss private check-ins, staff handovers, and changes to future support."
       }
     ],
-    "sourceKeys": [
-      "cpiEducation",
-      "cpiVerbal"
-    ],
-    "sourceNote": "Topic summaries adapted from CPI's published education and Verbal Intervention materials for the DACI Youth outline. DACI-specific certification details require client confirmation.",
     "id": "daci-youth",
     "category": "verbal",
     "riskBadge": "Youth & Adolescent Support • Hands-Off",
@@ -261,61 +249,57 @@ export const COURSES = [
     "duration": "8-hour planning estimate",
     "durationNote": "Allow approximately 8 hours for planning. Duration and certification requirements are confirmed with DACI before scheduling.",
     "certification": "DACI Youth completion and evaluation requirements are confirmed for the selected course format.",
-    "icon": "people"
+    "icon": "people",
+    "programNote": "DACI confirms the final lesson plan and completion requirements before booking."
   },
   {
     "name": "DACI Memory",
     "subtitle": "Dementia Education, De-Escalation & Crisis Intervention",
     "scope": "Hands-off dementia support",
-    "overview": "Understand the person behind distress and adapt support to their remaining abilities. Explore person-centered communication, daily care, and non-physical approaches to preventing and de-escalating dementia-related distress.",
+    "overview": "Help care teams respond thoughtfully when a person living with dementia becomes upset or confused. Plan calm conversations, familiar routines, and hands-off support around the individual.",
     "audience": "Memory care, assisted living, skilled nursing, home care, hospice, adult day services, and healthcare teams supporting people living with dementia.",
     "outcomes": [
-      "Recognize how cognitive changes affect daily life.",
-      "Consider personal history and remaining abilities when planning support.",
-      "Interpret distress as possible communication of an unmet need.",
-      "Adapt communication and care to the individual.",
-      "Use non-physical strategies to reduce distress.",
-      "Contribute to a consistent person-centered care plan."
+      "Notice changes in daily routines that may need attention.",
+      "Ask about familiar habits and preferences when planning care.",
+      "Consider discomfort, confusion, or the surroundings when distress occurs.",
+      "Adjust the pace and wording of care.",
+      "Pause tasks and ask for help when needed.",
+      "Share useful observations with the next member of the care team."
     ],
     "modules": [
       {
-        "title": "Dementia & changing abilities",
-        "description": "Connect cognitive changes with practical support needs."
+        "title": "Changes in everyday routines",
+        "description": "Discuss how changes in memory and attention can affect familiar tasks."
       },
       {
-        "title": "Knowing the person",
-        "description": "Consider preferences, history, strengths, and personhood."
+        "title": "Learning individual preferences",
+        "description": "Gather information about habits, likes, and important relationships."
       },
       {
-        "title": "Behavior as communication",
-        "description": "Look for unmet needs and distress triggers."
+        "title": "Checking causes of distress",
+        "description": "Consider discomfort, noise, and fatigue."
       },
       {
-        "title": "Communication that fits",
-        "description": "Adapt language and approach as communication abilities change."
+        "title": "Allowing time for a reply",
+        "description": "Rehearse brief explanations and pauses without rushing the person."
       },
       {
-        "title": "Support during daily care",
-        "description": "Match assistance and activities to remaining abilities."
+        "title": "Making daily tasks manageable",
+        "description": "Break a routine into smaller steps and offer suitable choices."
       },
       {
-        "title": "Preventing & de-escalating distress",
-        "description": "Practice person-centered, non-physical responses."
+        "title": "Pausing a difficult interaction",
+        "description": "Practice stepping back from a task and seeking help without physical intervention."
       },
       {
-        "title": "Supportive environments & relationships",
-        "description": "Consider environmental changes and family support."
+        "title": "Planning a calmer setting",
+        "description": "Discuss practical changes to lighting, noise, routines, and staff approach."
       },
       {
-        "title": "Care planning & team follow-through",
-        "description": "Translate observations into consistent support approaches."
+        "title": "Sharing observations with colleagues",
+        "description": "Record what happened and what appeared helpful for the next care interaction."
       }
     ],
-    "sourceKeys": [
-      "cpiDementia",
-      "cpiDementiaTopics"
-    ],
-    "sourceNote": "Topic summaries adapted from CPI's published Dementia Capable Care information for the DACI Memory outline. This description does not establish a CPI credential or DACI clinical accreditation.",
     "id": "daci-memory",
     "category": "specialty",
     "riskBadge": "Dementia & Cognitive Support • Hands-Off",
@@ -328,7 +312,8 @@ export const COURSES = [
     "duration": "8-hour planning estimate",
     "durationNote": "Allow approximately 8 hours for planning. Duration and certification requirements are confirmed with DACI before scheduling.",
     "certification": "DACI Memory completion and evaluation requirements are confirmed for the selected course format.",
-    "icon": "heart"
+    "icon": "heart",
+    "programNote": "DACI confirms the final lesson plan and completion requirements before booking."
   },
   {
     "id": "daci-retail",
@@ -353,10 +338,6 @@ export const COURSES = [
     "durationNote": "Allow approximately 4 hours for planning. The final curriculum, duration, and completion requirements are confirmed during consultation.",
     "certification": "Course format and DACI completion requirements are confirmed during consultation.",
     "icon": "store",
-    "sourceKeys": [
-      "cpiVerbal"
-    ],
-    "sourceNote": "Learning focus draws on CPI’s published verbal de-escalation topics, adapted for a proposed DACI retail outline. Final retail content is confirmed during consultation.",
     "modules": [
       {
         "title": "Recognizing frustration",
@@ -382,7 +363,8 @@ export const COURSES = [
         "title": "Incident review & prevention",
         "description": "Report concerns and use team learning to improve future interactions."
       }
-    ]
+    ],
+    "programNote": "DACI confirms the final lesson plan and completion requirements before booking."
   }
 ];
 export const INDUSTRIES = [
