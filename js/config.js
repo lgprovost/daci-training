@@ -5,8 +5,15 @@ export const SITE_CONFIG = {
   domain: 'dacitraining.com',
   serviceArea: 'Nationwide (Live Onsite Group Training)',
   cpiCredential: 'Certified Crisis Prevention Institute (CPI) Instructor',
-  formEndpoint: 'https://formspree.io/f/[FORM_ID]'
+  formEndpoint: 'https://api.web3forms.com/submit',
+  web3formsAccessKey: '[WEB3FORMS_ACCESS_KEY]'
 };
+
+export function isQuoteServiceConfigured(config = SITE_CONFIG) {
+  return config.formEndpoint === 'https://api.web3forms.com/submit'
+    && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(config.web3formsAccessKey || '')
+    && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.inquiryEmail);
+}
 
 export function hydrateContacts(root = document) {
   root.querySelectorAll('[data-inquiry-email]').forEach(el => {

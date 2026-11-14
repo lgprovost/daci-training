@@ -1,5 +1,5 @@
 import { COURSES, INDUSTRIES, TIERS } from '../data/programs-config.js';
-import { SITE_CONFIG, readSelection, saveSelection } from './config.js';
+import { SITE_CONFIG, isQuoteServiceConfigured, readSelection, saveSelection } from './config.js';
 const form = document.querySelector('#quote-form');
 const controls = [...form.querySelectorAll('[name="selected_courses"]')];
 const industry = form.elements.industry_sector;
@@ -92,8 +92,8 @@ form.addEventListener('submit', async e => {
   if (count.value && (!Number.isInteger(Number(count.value)) || Number(count.value) < 1)) { showError(count.id, 'Enter a whole number of at least 1.'); firstError ||= count; }
   if (!controls.some(input => input.checked)) { showError('course-matrix', 'Select at least one training program.'); firstError ||= controls[0]; }
   if (firstError) { firstError.focus(); return; }
-  if (form.elements._gotcha.value) return;
-  if (!/^https:\/\/formspree\.io\/f\/[A-Za-z0-9]+$/.test(SITE_CONFIG.formEndpoint) || SITE_CONFIG.inquiryEmail.includes('[')) {
+  if (form.elements.botcheck.checked) return;
+  if (!isQuoteServiceConfigured()) {
     message.textContent = 'Quote submission is not available yet. Your training selections are saved for this visit. DACI’s email contact and request service are being finalized.';
     message.hidden = false; message.focus(); return;
   }
@@ -101,9 +101,14 @@ form.addEventListener('submit', async e => {
   submitting = true; submit.disabled = true; submit.textContent = 'Sending your request…'; form.setAttribute('aria-busy','true');
   try {
     const data = new FormData(form);
+    data.set('access_key', SITE_CONFIG.web3formsAccessKey);
+    data.set('email', email.value.trim());
+    data.set('replyto', email.value.trim());
+    data.set('name', form.elements.contact_name_title.value.trim());
     data.set('selected_courses', controls.filter(input => input.checked).map(input => input.value).join(','));
     const response = await fetch(SITE_CONFIG.formEndpoint, { method:'POST', body:data, headers:{ Accept:'application/json' }, signal:AbortSignal.timeout(20000) });
-    if (!response.ok) throw new Error('Submission failed');
+    const result = await response.json();
+    if (!response.ok || result.success !== true) throw new Error('Submission failed');
     form.hidden = true;
     const confirmation = document.querySelector('#quote-confirmation'); confirmation.hidden = false; confirmation.focus();
     saveSelection([]);

@@ -4,10 +4,11 @@ import { readFile } from 'node:fs/promises';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { isQuoteServiceConfigured } from '../js/config.js';
 import { COURSES, INDUSTRIES, TIERS } from '../data/programs-config.js';
 const code=(await readFile(new URL('../js/quote-matrix.js',import.meta.url),'utf8')).replace(/^import .*;\r?$/gm,'');
 
-function fixture({endpoint='https://formspree.io/f/testid',query='?courses=daci-level-1',initial=[],response,valid=true,honeypot='',emailAddress='training@example.com'}={}) {
+function fixture({endpoint='https://api.web3forms.com/submit',accessKey='11111111-1111-4111-8111-111111111111',query='?courses=daci-level-1',initial=[],response,valid=true,honeypot='',emailAddress='training@example.com'}={}) {
  const nodes=new Map(); let saved=initial, requests=[];
  class Element {
   constructor(id='') { this.id=id;this.children=[];this.attrs={};this.dataset={};this.hidden=false;this.value='';this.checked=false;this.events={};this.textContent=''; if(id) nodes.set(id,this); }
@@ -32,16 +33,16 @@ function fixture({endpoint='https://formspree.io/f/testid',query='?courses=daci-
  const recommendations=COURSES.map(c=>{const el=new Element();el.dataset.recommendation=c.id;return el;});
  const required=['organization_name','contact_name_title','work_email','training_location','industry_sector','participant_count'];
  form.elements={};
- for(const id of [...required,'primary_risk','level3_eligibility','selected_courses_summary','_gotcha']) form.elements[id]=new Element(id);
+ for(const id of [...required,'primary_risk','level3_eligibility','selected_courses_summary','botcheck']) form.elements[id]=new Element(id);
  if(valid) Object.entries({organization_name:'Example Org',contact_name_title:'Test Coordinator',work_email:'test@example.com',training_location:'Phoenix',industry_sector:'healthcare',participant_count:'24'}).forEach(([id,value])=>{form.elements[id].value=value;});
- form.elements._gotcha.value=honeypot;
+ form.elements.botcheck.checked=Boolean(honeypot);
  new Element('course-matrix');
  const statuses={'[data-plan-status]':new Element(),'[data-recommendation-status]':new Element()};
  form.querySelectorAll=selector=>selector==='[name="selected_courses"]'?controls:selector==='[data-recommendation]'?recommendations:[];
  form.querySelector=()=>submit;
  const document={activeElement:null,querySelector:selector=>({'#quote-form':form,'[data-summary-list]':summary,'#form-message':message,'#quote-confirmation':confirmation,...statuses})[selector],getElementById:id=>nodes.get(id),createElement:()=>new Element()};
  class TestFormData { constructor() {this.data=new Map(Object.entries(form.elements).map(([key,el])=>[key,el.value]));} set(key,value) {this.data.set(key,value);} get(key) {return this.data.get(key);} }
- const context=vm.createContext({COURSES,INDUSTRIES,TIERS,SITE_CONFIG:{formEndpoint:endpoint,inquiryEmail:emailAddress},document,location:{search:query},URLSearchParams,Set,FormData:TestFormData,AbortSignal,readSelection:()=>initial,saveSelection:ids=>{saved=ids;},fetch:async(...args)=>{requests.push(args);return response?await response(...args):{ok:true};}});
+ const context=vm.createContext({COURSES,INDUSTRIES,TIERS,SITE_CONFIG:{formEndpoint:endpoint,inquiryEmail:emailAddress,web3formsAccessKey:accessKey},isQuoteServiceConfigured:()=>isQuoteServiceConfigured({formEndpoint:endpoint,inquiryEmail:emailAddress,web3formsAccessKey:accessKey}),document,location:{search:query},URLSearchParams,Set,FormData:TestFormData,AbortSignal,readSelection:()=>initial,saveSelection:ids=>{saved=ids;},fetch:async(...args)=>{requests.push(args);return response?await response(...args):{ok:true,json:async()=>({success:true})};}});
  new vm.Script(code).runInContext(context);
  return {form,controls,summary,message,confirmation,submit,nodes,document,recommendations,requests,get saved(){return saved;},send:()=>form.emit('submit')};
 }
@@ -52,17 +53,21 @@ test('invalid entries focus the first error and never issue a request',async()=>
  assert.ok(f.nodes.has('course-matrix-error'));assert.ok(f.nodes.has('participant_count-error'));
 });
 test('an unconfigured endpoint never reports success or sends data',async()=>{
- const f=fixture({endpoint:'https://formspree.io/f/[FORM_ID]'});await f.send();
+ const f=fixture({accessKey:'[WEB3FORMS_ACCESS_KEY]'});await f.send();
  assert.equal(f.requests.length,0);assert.equal(f.confirmation.hidden,true);assert.equal(f.message.hidden,false);
 });
 test('a successful POST contains the course IDs and summary, then clears storage',async()=>{
  const f=fixture();await f.send();const [,options]=f.requests[0];
+ assert.equal(f.requests[0][0],'https://api.web3forms.com/submit');
+ assert.equal(options.body.get('access_key'),'11111111-1111-4111-8111-111111111111');
+ assert.equal(options.body.get('email'),'test@example.com');
+ assert.equal(options.body.get('replyto'),'test@example.com');
  assert.equal(options.method,'POST');assert.equal(options.body.get('selected_courses'),'daci-level-1');
  assert.equal(options.body.get('selected_courses_summary'),'DACI Level 1');
  assert.equal(f.form.hidden,true);assert.equal(f.confirmation.hidden,false);assert.equal(f.saved.length,0);
 });
 test('server errors preserve entries and selections and allow retry',async()=>{
- const f=fixture({response:()=>({ok:false})});await f.send();
+ const f=fixture({response:()=>({ok:false,json:async()=>({success:false})})});await f.send();
  assert.equal(f.form.hidden,false);assert.equal(f.confirmation.hidden,true);assert.equal(f.message.hidden,false);
  assert.equal(f.form.elements.organization_name.value,'Example Org');assert.equal(f.saved[0],'daci-level-1');assert.equal(f.submit.disabled,false);
 });
@@ -73,7 +78,7 @@ test('honeypot requests do not reach the endpoint',async()=>{const f=fixture({ho
 test('a pending submission suppresses duplicate sends',async()=>{
  let release;const f=fixture({response:()=>new Promise(resolve=>{release=resolve;})});
  const pending=f.send();await f.send();assert.equal(f.requests.length,1);assert.equal(f.submit.disabled,true);
- release({ok:true});await pending;assert.equal(f.confirmation.hidden,false);
+ release({ok:true,json:async()=>({success:true})});await pending;assert.equal(f.confirmation.hidden,false);
 });
 test('hydration merges valid storage and URL IDs, ignoring unknown values',()=>{
  const f=fixture({query:'?industry=education&courses=daci-youth,bogus',initial:['daci-level-1','not-real']});
@@ -96,3 +101,12 @@ test('Level 3 requires law enforcement or corrections eligibility before deliver
  assert.equal(f.requests.length,1);assert.equal(f.confirmation.hidden,false);
 });
 
+
+test('a provider rejection with HTTP 200 never shows success',async()=>{
+ const f=fixture({response:()=>({ok:true,json:async()=>({success:false,message:'Invalid access key'})})});await f.send();
+ assert.equal(f.form.hidden,false);assert.equal(f.confirmation.hidden,true);assert.equal(f.message.hidden,false);assert.equal(f.saved[0],'daci-level-1');
+});
+
+test('an unexpected endpoint cannot receive visitor data',async()=>{
+ const f=fixture({endpoint:'https://example.com/submit'});await f.send();assert.equal(f.requests.length,0);
+});

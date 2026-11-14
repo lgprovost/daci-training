@@ -89,8 +89,8 @@ export const COURSES = [
     ],
     "audience": "Healthcare and behavioral health professionals, direct-care teams, and designated clinical response staff.",
     "context": "Physical skills are matched to staff responsibilities, organizational policy, and instructor assessment.",
-    "duration": "12-hour planning estimate • confirm format",
-    "durationNote": "Standard certification planning estimate: 12 hours, the midpoint of the supplied 8- and 16-hour options. Advanced: 24 hours; instructor: 40 hours. DACI confirms the appropriate format before scheduling.",
+    "duration": "8-hour or 16-hour certification",
+    "durationNote": "Certification options: 8 hours or 16 hours. Advanced certification: 24 hours; instructor certification: 40 hours. DACI confirms the appropriate option and schedule during consultation.",
     "certification": "DACI program evaluation includes written, skills, scenario, and team-response assessments. Certification level is confirmed with DACI.",
     "icon": "shield",
     "modules": [
