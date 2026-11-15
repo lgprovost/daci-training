@@ -50,7 +50,7 @@ check((sitemap.match(/<url>/g)||[]).length===11&&!sitemap.includes('trainer-logi
 const catalogHtml=await readFile(path.join(root,'training-courses.html'),'utf8');
 const homeHtml=await readFile(path.join(root,'index.html'),'utf8');
 check(!/data-add-course|Add to Quote|Added to Quote/.test(catalogHtml+homeHtml),'Program cards have no Add to Quote buttons');
-check(catalogHtml.includes('<div class="quote-strip">')&&!catalogHtml.includes('data-selected-strip'),'Catalog quote CTA is always available');
+check(catalogHtml.includes('<div class="quote-strip">')&&!catalogHtml.includes('data-selected-strip'),'Catalog quote CTA does not depend on course selection');
 check(!catalogHtml.includes('Selected for Quote')&&!catalogHtml.includes('?courses='),'Catalog quote links do not preselect programs');
 const formHtml=await readFile(path.join(root,'request-quote.html'),'utf8');
 check((formHtml.match(/name="selected_courses"/g)||[]).length===6,'Quote matrix has six checkboxes');
