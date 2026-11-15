@@ -16,7 +16,7 @@ Run from this directory: `node scripts/build.mjs`, `node scripts/check.mjs`, and
 
 - `data/programs-config.js`: six DACI programs, intended learning outcomes, curriculum modules, duration estimates, original DACI descriptions, and eight industry mappings.
 - `scripts/build.mjs`: shared page content, permanent program routes, metadata, sitemap, and schema.
-- `js/config.js`: confirmed intended domain `dacitraining.com`, confirmed inquiry email `info@dacitraining.com`, and Web3Forms endpoint, and pending `web3formsAccessKey`. No phone configuration or phone field.
+- `js/config.js`: intended domain `dacitraining.com`, inquiry email `info@dacitraining.com`, Web3Forms endpoint, and the client-supplied public form access key. No phone configuration or phone field.
 - `js/quote-matrix.js`: course selection, URL/storage hydration, validation, Level 3 eligibility confirmation, and delivery handling.
 
 The builder renders all curriculum content as static HTML and emits a smaller browser data module containing only selector fields. The shipped JavaScript budget remains below 10 KB gzip.
@@ -35,11 +35,11 @@ Level 3 is restricted to law enforcement/corrections and is not automatically in
 ## Remaining public launch requirements
 
 1. Public inquiry email confirmed: `info@dacitraining.com`. Confirm the mailbox is active and receiving messages.
-2. Create a Web3Forms access key for the confirmed recipient inbox and set `web3formsAccessKey`; the `formEndpoint` is https://api.web3forms.com/submit. Send a real delivery-and-reply test. The current page discloses that submission is unavailable and blocks requests while the Web3Forms access key is pending.
+2. The client-supplied Web3Forms access key is configured, enabling quote submissions to https://api.web3forms.com/submit. A real delivery-and-reply test must still verify the inbox associated with the key; configured contact email does not change Web3Forms' recipient mapping. The key is public by Web3Forms design, not a secret server API token.
 3. Connect domain DNS and public hosting access for `dacitraining.com`; canonical metadata alone does not connect a domain. The existing Sites review audience remains private. Test all seven QR destinations before printing.
 4. Confirm remaining course-delivery details, including the scope and eligibility of Level 2’s approved 8-hour and 16-hour certification options. Design approval does not confirm outstanding lesson-plan or certification details. See `docs/client-follow-up.html`.
 5. Prepare GoDaddy-compatible routing for extensionless page URLs and the branded 404, configure HTTPS and the domain, and preserve email DNS records. The current `_redirects` and `netlify.toml` files target other hosting workflows and do not configure cPanel.
-6. Run `node scripts/check.mjs --launch` once contact settings are complete. It is expected to fail until then.
+6. Run `node scripts/check.mjs --launch` for configuration checks. Passing checks does not verify actual email delivery, DNS, HTTPS, or production hosting.
 
 ## Hosting and assets
 

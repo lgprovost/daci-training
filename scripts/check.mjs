@@ -5,7 +5,7 @@ import vm from 'node:vm';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { COURSES, INDUSTRIES } from '../data/programs-config.js';
-import { SITE_CONFIG } from '../js/config.js';
+import { SITE_CONFIG, isQuoteServiceConfigured } from '../js/config.js';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 let checks = 0;
 function check(condition,message) { assert.ok(condition,message); checks++; }
@@ -51,7 +51,8 @@ const formHtml=await readFile(path.join(root,'request-quote.html'),'utf8');
 check((formHtml.match(/name="selected_courses"/g)||[]).length===6,'Quote matrix has six checkboxes');
 check(!/proof-stat|14\.2|89%|74%|58%|17 million/.test(formHtml),'Quote journey contains zero promotional statistics');
 check(formHtml.includes('level3_eligibility'),'Level 3 has an eligibility confirmation');
-check(formHtml.includes('Quote submission is not available yet.'),'Pending quote service is disclosed before entry');
+check(formHtml.includes('Quote submission is not available yet.') === !isQuoteServiceConfigured(),'Quote availability notice matches configuration');
+check(formHtml.includes(`name="access_key" value="${SITE_CONFIG.web3formsAccessKey}"`),'Quote form uses the configured Web3Forms access key');
 check(COURSES.find(c=>c.id==='daci-level-3').industries.join(',')==='security','Level 3 is mapped only to law enforcement/corrections sector');
 check(!INDUSTRIES.some(i=>i.courses.includes('daci-level-3')),'Level 3 is not automatically recommended to broad industry bundles');
 for(const match of formHtml.matchAll(/<(?:input|select|textarea)\b[^>]*id="([^"]+)"[^>]*>/g)) {

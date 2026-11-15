@@ -64,6 +64,9 @@ test('a successful POST contains the course IDs and summary, then clears storage
  assert.equal(options.body.get('replyto'),'test@example.com');
  assert.equal(options.method,'POST');assert.equal(options.body.get('selected_courses'),'daci-level-1');
  assert.equal(options.body.get('selected_courses_summary'),'DACI Level 1');
+ assert.match(options.body.get('message'),/Programs: DACI Level 1/);
+ assert.match(options.body.get('message'),/Organization: Example Org/);
+ assert.match(options.body.get('message'),/Participants: 24/);
  assert.equal(f.form.hidden,true);assert.equal(f.confirmation.hidden,false);assert.equal(f.saved.length,0);
 });
 test('server errors preserve entries and selections and allow retry',async()=>{

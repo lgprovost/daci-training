@@ -106,6 +106,16 @@ form.addEventListener('submit', async e => {
     data.set('replyto', email.value.trim());
     data.set('name', form.elements.contact_name_title.value.trim());
     data.set('selected_courses', controls.filter(input => input.checked).map(input => input.value).join(','));
+    data.set('message', [
+      `Organization: ${data.get('organization_name')}`,
+      `Contact: ${data.get('contact_name_title')}`,
+      `Industry: ${data.get('industry_sector')}`,
+      `Programs: ${data.get('selected_courses_summary')}`,
+      `Participants: ${data.get('participant_count')}`,
+      `Training location: ${data.get('training_location')}`,
+      `Preferred dates: ${data.get('preferred_dates') || 'To be discussed'}`,
+      `Training notes: ${data.get('training_notes') || 'None provided'}`
+    ].join('\n'));
     const response = await fetch(SITE_CONFIG.formEndpoint, { method:'POST', body:data, headers:{ Accept:'application/json' }, signal:AbortSignal.timeout(20000) });
     const result = await response.json();
     if (!response.ok || result.success !== true) throw new Error('Submission failed');

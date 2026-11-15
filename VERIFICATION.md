@@ -3,9 +3,9 @@
 ## Approved design handoff — November 15, 2026
 
 - Current catalog: six DACI programs and 13 public HTML pages.
-- 716 static/data checks and 13 mocked quote-form tests pass. Documentation HTML in `docs/` is excluded from the public-page checks and is not included in `dist/`.
+- 717 static/data checks and 13 mocked quote-form tests pass. Documentation HTML in `docs/` is excluded from the public-page checks and is not included in `dist/`. The form access key is configured; request payload tests cover the access key, reply-to email, selected programs and readable message summary.
 - The Why DACI navigation label retains `/about`; the founder section is removed. No other page content or metadata was changed by those updates.
-- The public site has not launched. GoDaddy cPanel routing, domain/HTTPS configuration, the Web3Forms access key, and real inbox delivery tests remain outstanding.
+- The public site has not launched. Production hosting/routing, domain/HTTPS configuration, and real inbox delivery tests remain outstanding. The client-supplied Web3Forms key is configured; no real submission or inbox-receipt verification was performed by the automated tests.
 - Earlier browser observations below are historical, not verification of the current public launch.
 
 ## Historical development verification

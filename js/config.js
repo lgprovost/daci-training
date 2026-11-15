@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
   serviceArea: 'Nationwide (Live Onsite Group Training)',
   cpiCredential: 'Certified Crisis Prevention Institute (CPI) Instructor',
   formEndpoint: 'https://api.web3forms.com/submit',
-  web3formsAccessKey: '[WEB3FORMS_ACCESS_KEY]'
+  web3formsAccessKey: 'bfbd8cbd-58c4-4b5c-a550-e4cb502b8db3'
 };
 
 export function isQuoteServiceConfigured(config = SITE_CONFIG) {
