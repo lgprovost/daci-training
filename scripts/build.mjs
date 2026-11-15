@@ -1,10 +1,14 @@
 import { mkdir, writeFile, readFile, cp } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import { COURSES, INDUSTRIES, TIERS } from '../data/programs-config.js';
 import { SITE_CONFIG as config, isQuoteServiceConfigured } from '../js/config.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const versionedFiles = ['css/tokens.css','css/base.css','css/layout.css','css/components.css','css/forms.css','js/navigation.js','js/course-catalog.js','js/quote-matrix.js'];
+const assetVersions = Object.fromEntries(await Promise.all(versionedFiles.map(async file => [file,createHash('sha256').update(await readFile(path.join(root,file))).digest('hex').slice(0,12)])));
+const assetURL = file => `/${file}?v=${assetVersions[file]}`;
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const origin = `https://${config.domain.replace(/^https?:\/\//, '').replace(/\/$/, '')}`;
 const quote = (label = 'Request a Custom Quote') => `<a class="button button-primary" href="/request-quote">${label}${icon('arrow')}</a>`;
@@ -60,8 +64,8 @@ function page({title,description,route='',content,script='',structured=false,noi
 <link rel="canonical" href="${origin}${route || '/'}"><meta property="og:type" content="website"><meta property="og:site_name" content="DACI"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${origin}${route || '/'}"><meta property="og:image" content="${origin}/assets/brand/daci-og-share-card-v3.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="DACI — Building Safer People, Safer Teams, and Safer Organizations"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/brand/favicon-v2.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon-v2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap" rel="stylesheet">
-${['tokens','base','layout','components','forms'].map(name => `<link rel="stylesheet" href="/css/${name}.css">`).join('')}${structured ? schema() : ''}
-<script type="module" src="/js/navigation.js"></script>${script ? `<script type="module" src="/js/${script}.js"></script>` : ''}
+${['tokens','base','layout','components','forms'].map(name => `<link rel="stylesheet" href="${assetURL(`css/${name}.css`)}">`).join('')}${structured ? schema() : ''}
+<script type="module" src="${assetURL('js/navigation.js')}"></script>${script ? `<script type="module" src="${assetURL(`js/${script}.js`)}"></script>` : ''}
 <noscript><style>.menu-toggle{display:none}.nav-shell{display:flex;position:static;width:auto;padding:8px;box-shadow:none}.header-inner{height:auto;flex-wrap:wrap}.site-header{height:auto}.primary-nav{flex-wrap:wrap;flex-direction:row}.header-actions{display:none}.hero-grid{padding-top:40px}.filter-bar,#quote-form{display:none}</style></noscript>
 </head><body>${header()}${content}${footer()}${script === 'quote-matrix' ? '<script src="https://web3forms.com/client/script.js" async defer></script>' : ''}</body></html>`;
 }
