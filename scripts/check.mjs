@@ -15,7 +15,7 @@ check(ids.size===6,'Exactly six distinct DACI program IDs');
 check(INDUSTRIES.length===8,'Exactly eight industries');
 for(const c of COURSES) { check(c.outcomes.length>=4,`${c.id}: learning outcomes supplied`); check(c.modules.length>=6,`${c.id}: curriculum modules supplied`); check(c.industries.every(id=>INDUSTRIES.some(i=>i.id===id)),`${c.id}: valid industry IDs`); }
 for(const i of INDUSTRIES) check(i.courses.every(id=>ids.has(id)),`${i.id}: valid course bundle`);
-const htmlFiles=(await files(root)).filter(n=>n.endsWith('.html')&&!n.includes(`${path.sep}dist${path.sep}`)&&!n.includes(`${path.sep}docs${path.sep}`)).map(n=>path.relative(root,n));
+const htmlFiles=(await files(root)).filter(n=>n.endsWith('.html')&&['.','programs'].includes(path.dirname(path.relative(root,n)))).map(n=>path.relative(root,n));
 check(htmlFiles.length===13,'Six primary pages, six program pages, and branded 404');
 for(const name of htmlFiles) {
  const html=await readFile(path.join(root,name),'utf8');

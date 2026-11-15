@@ -15,10 +15,16 @@ export function isQuoteServiceConfigured(config = SITE_CONFIG) {
     && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.inquiryEmail);
 }
 
+// Pages supplies its mount path at export time; the review preview uses '/'.
+export function sitePath(route) {
+  const base = document.querySelector('meta[name="daci-base-path"]')?.content || '/';
+  return base + route.replace(/^\//, '');
+}
+
 export function hydrateContacts(root = document) {
   root.querySelectorAll('[data-inquiry-email]').forEach(el => {
     el.textContent = SITE_CONFIG.inquiryEmail;
-    el.href = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(SITE_CONFIG.inquiryEmail) ? `mailto:${SITE_CONFIG.inquiryEmail}` : '/request-quote#contact-options';
+    el.href = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(SITE_CONFIG.inquiryEmail) ? `mailto:${SITE_CONFIG.inquiryEmail}` : sitePath('/request-quote#contact-options');
   });
   root.querySelectorAll('[data-cpi-credential]').forEach(el => { el.textContent = SITE_CONFIG.cpiCredential; });
 }

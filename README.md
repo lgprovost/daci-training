@@ -2,7 +2,7 @@
 
 Client-approved design, November 15, 2026. Thirteen static HTML pages: six main pages, six permanent DACI program detail pages, and a branded 404. Live onsite training nationwide; all contact and quote follow-up is by email.
 
-DACI has not launched a public website. The existing Sites publication is an owner-private review preview. Production hosting will be GoDaddy Web Hosting with cPanel, using `dacitraining.com`.
+The existing Sites publication is an owner-private review preview. GitHub Pages provides a public feedback site at `https://lgprovost.github.io/daci-training/`. The intended production address is `dacitraining.com`, with DNS managed at GoDaddy; the custom domain is not connected yet.
 
 The navigation label is **Why DACI**, retaining the `/about` route. The founder photo/biography/credentials section has been removed from that page. No replacement imagery has been added.
 
@@ -42,14 +42,20 @@ Level 3 is restricted to law enforcement/corrections and is not automatically in
 2. The client-supplied Web3Forms access key is configured, enabling quote submissions to https://api.web3forms.com/submit. A real delivery-and-reply test must still verify the inbox associated with the key; configured contact email does not change Web3Forms' recipient mapping. The key is public by Web3Forms design, not a secret server API token.
 3. Connect domain DNS and public hosting access for `dacitraining.com`; canonical metadata alone does not connect a domain. The existing Sites review audience remains private. Test all seven QR destinations before printing.
 4. Confirm remaining course-delivery details, including the scope and eligibility of Level 2’s approved 8-hour and 16-hour certification options. Design approval does not confirm outstanding lesson-plan or certification details. See `docs/client-follow-up.html`.
-5. Prepare GoDaddy-compatible routing for extensionless page URLs and the branded 404, configure HTTPS and the domain, and preserve email DNS records. The current `_redirects` and `netlify.toml` files target other hosting workflows and do not configure cPanel.
+5. Connect `dacitraining.com` in GitHub Pages settings when the client is ready, configure the corresponding GoDaddy DNS records, enable HTTPS, and preserve email DNS records. GoDaddy manages the domain; GitHub Pages hosts this version of the site.
 6. Run `node scripts/check.mjs --launch` for configuration checks. Passing checks does not verify actual email delivery, DNS, HTTPS, or production hosting.
 
 ## Hosting and assets
 
 `.openai/hosting.json` retains the existing Sites project identity. `dist/` is the deployment directory. Netlify and static-host route rules cover all six permanent program pages. All canonical URLs and sitemap routes use the intended domain.
 
-Build locally with Node.js 20 or later; upload the **contents** of `dist/` to the GoDaddy domain's document root when the production routing and launch checks are ready. No Node.js server or database is needed for the current static site. Do not upload the source repository, `.git/`, or private review configuration as the document root. This repository does not automatically deploy to GoDaddy or launch the public site.
+Build locally with Node.js 20 or later. No Node.js server or database is needed for the current static site. Do not upload the source repository, `.git/`, or private review configuration as a website document root.
+
+### GitHub Pages
+
+`.github/workflows/deploy-pages.yml` builds and tests on pushes to `main` and manual runs, then publishes only `pages-dist/`. `scripts/build-pages.mjs` converts the normal build's public pages to directory/index routes, prefixes links and assets for the configured Pages URL, and validates every exported root-relative destination. The normal `dist/` build remains available for the private review workflow.
+
+For a local Pages export, run `node scripts/build.mjs`, the normal checks/tests, and `node scripts/build-pages.mjs`. The default base URL is the feedback URL. Set `PAGES_BASE_URL=https://dacitraining.com` to test a root-domain export. The workflow reads the actual base URL from `actions/configure-pages`, so a future custom-domain change is picked up by the next deployment without hardcoding another path. After changing the domain setting, rerun the workflow. Pages must be enabled with **Settings → Pages → Source → GitHub Actions**. The existing `_headers`, `_redirects`, and `netlify.toml` files are not Pages configuration and are excluded from the Pages artifact.
 
 A universal QR entry page with multiple-program selection was discussed but has not been implemented. The current QR CSV lists individual program pages; confirm the final card workflow before printing.
 

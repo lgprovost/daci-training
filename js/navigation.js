@@ -1,4 +1,4 @@
-import { hydrateContacts } from './config.js';
+import { hydrateContacts, sitePath } from './config.js';
 import './sticky-bar.js';
 
 hydrateContacts();
@@ -43,5 +43,5 @@ toggleMenu(false, false);
 document.querySelector('[data-quick-path]')?.addEventListener('submit', e => {
   e.preventDefault();
   const params = new URLSearchParams(new FormData(e.currentTarget));
-  location.href = `/request-quote?${params}`;
+  location.href = `${sitePath('/request-quote')}?${params}`;
 });

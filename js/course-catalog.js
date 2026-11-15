@@ -1,5 +1,5 @@
 import { COURSES } from '../data/programs-config.js';
-import { readSelection, saveSelection } from './config.js';
+import { readSelection, saveSelection, sitePath } from './config.js';
 const known = new Set(COURSES.map(course => course.id));
 const selected = new Set(readSelection().filter(id => known.has(id)));
 const params = new URLSearchParams(location.search);
@@ -14,7 +14,7 @@ function update() {
     button.textContent = on ? '✓ Added to Quote' : '+ Add to Quote';
   });
   document.querySelectorAll('[data-selected-count]').forEach(el => { el.textContent = `Selected for Quote (${selected.size})`; });
-  document.querySelectorAll('[data-build-quote]').forEach(el => { el.href = `/request-quote?courses=${[...selected].join(',')}`; });
+  document.querySelectorAll('[data-build-quote]').forEach(el => { el.href = `${sitePath('/request-quote')}?courses=${[...selected].join(',')}`; });
   const strip = document.querySelector('[data-selected-strip]');
   if (strip) strip.hidden = selected.size === 0;
 }
