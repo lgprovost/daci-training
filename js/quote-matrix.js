@@ -97,10 +97,18 @@ form.addEventListener('submit', async e => {
     message.textContent = 'Quote submission is not available yet. Your training selections are saved for this visit. Please email DACI at info@dacitraining.com to request a quote.';
     message.hidden = false; message.focus(); return;
   }
+  clearError('quote-captcha');
+  const captchaToken = form.elements['h-captcha-response']?.value?.trim();
+  if (!captchaToken) {
+    showError('quote-captcha', 'Complete the verification before submitting. If it does not load, refresh this page or email info@dacitraining.com.');
+    document.getElementById('quote-captcha').focus();
+    return;
+  }
   const submit = form.querySelector('[type=submit]');
   submitting = true; submit.disabled = true; submit.textContent = 'Sending your request…'; form.setAttribute('aria-busy','true');
   try {
     const data = new FormData(form);
+    data.set('h-captcha-response', captchaToken);
     data.set('access_key', SITE_CONFIG.web3formsAccessKey);
     data.set('email', email.value.trim());
     data.set('replyto', email.value.trim());
@@ -123,7 +131,11 @@ form.addEventListener('submit', async e => {
     const confirmation = document.querySelector('#quote-confirmation'); confirmation.hidden = false; confirmation.focus();
     saveSelection([]);
   } catch {
-    message.textContent = 'We couldn’t send your request. Your entries are still here. Please try again or contact DACI directly.';
+    // Verification tokens are single-use, including when a request fails or times out.
+    const captchaField = form.elements['h-captcha-response'];
+    if (captchaField) captchaField.value = '';
+    try { window.hcaptcha?.reset(); } catch { /* The message also offers direct email contact. */ }
+    message.textContent = 'We couldn’t send your request. Your entries are still here. Complete the verification again and retry, or email info@dacitraining.com.';
     message.hidden = false; message.focus();
   } finally {
     submitting = false; submit.disabled = false; submit.textContent = 'Submit Custom Quote Request'; form.removeAttribute('aria-busy');

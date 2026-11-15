@@ -21,6 +21,10 @@ Run from this directory: `node scripts/build.mjs`, `node scripts/check.mjs`, and
 
 The builder renders all curriculum content as static HTML and emits a smaller browser data module containing only selector fields. The shipped JavaScript budget remains below 10 KB gzip.
 
+The quote form uses Web3Forms' zero-configuration hCaptcha widget and loads `https://web3forms.com/client/script.js` only on that page. It requires a nonempty `h-captcha-response` token before sending and resets verification after failed requests while retaining quote entries. The user confirmed hCaptcha is enabled in the Web3Forms dashboard. Server verification is handled by Web3Forms; a real solved challenge and inbox receipt still need manual confirmation. See [Web3Forms hCaptcha setup](https://docs.web3forms.com/getting-started/customizations/spam-protection/hcaptcha).
+
+The `_headers` Content Security Policy allows the documented Web3Forms/hCaptcha resources and submit endpoint. That file is host-specific; future production hosting must apply equivalent headers where supported.
+
 ## Program catalog
 
 - DACI Level 1: `/programs/daci-level-1`

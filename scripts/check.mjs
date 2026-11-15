@@ -50,6 +50,8 @@ check((sitemap.match(/<url>/g)||[]).length===11&&!sitemap.includes('trainer-logi
 const formHtml=await readFile(path.join(root,'request-quote.html'),'utf8');
 check((formHtml.match(/name="selected_courses"/g)||[]).length===6,'Quote matrix has six checkboxes');
 check(!/proof-stat|14\.2|89%|74%|58%|17 million/.test(formHtml),'Quote journey contains zero promotional statistics');
+check(formHtml.includes('class="h-captcha"') && formHtml.includes('data-captcha="true"'),'Quote form includes Web3Forms hCaptcha widget');
+check(formHtml.includes('https://web3forms.com/client/script.js'),'Quote page loads the documented hCaptcha client');
 check(formHtml.includes('level3_eligibility'),'Level 3 has an eligibility confirmation');
 check(formHtml.includes('Quote submission is not available yet.') === !isQuoteServiceConfigured(),'Quote availability notice matches configuration');
 check(formHtml.includes(`name="access_key" value="${SITE_CONFIG.web3formsAccessKey}"`),'Quote form uses the configured Web3Forms access key');

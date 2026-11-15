@@ -8,8 +8,8 @@ import { isQuoteServiceConfigured } from '../js/config.js';
 import { COURSES, INDUSTRIES, TIERS } from '../data/programs-config.js';
 const code=(await readFile(new URL('../js/quote-matrix.js',import.meta.url),'utf8')).replace(/^import .*;\r?$/gm,'');
 
-function fixture({endpoint='https://api.web3forms.com/submit',accessKey='11111111-1111-4111-8111-111111111111',query='?courses=daci-level-1',initial=[],response,valid=true,honeypot='',emailAddress='training@example.com'}={}) {
- const nodes=new Map(); let saved=initial, requests=[];
+function fixture({endpoint='https://api.web3forms.com/submit',accessKey='11111111-1111-4111-8111-111111111111',query='?courses=daci-level-1',initial=[],response,valid=true,honeypot='',emailAddress='training@example.com',captcha='test-hcaptcha-token'}={}) {
+ const nodes=new Map(); let saved=initial, requests=[], captchaResets=0;
  class Element {
   constructor(id='') { this.id=id;this.children=[];this.attrs={};this.dataset={};this.hidden=false;this.value='';this.checked=false;this.events={};this.textContent=''; if(id) nodes.set(id,this); }
   setAttribute(k,v) { this.attrs[k]=String(v); }
@@ -36,15 +36,17 @@ function fixture({endpoint='https://api.web3forms.com/submit',accessKey='1111111
  for(const id of [...required,'primary_risk','level3_eligibility','selected_courses_summary','botcheck']) form.elements[id]=new Element(id);
  if(valid) Object.entries({organization_name:'Example Org',contact_name_title:'Test Coordinator',work_email:'test@example.com',training_location:'Phoenix',industry_sector:'healthcare',participant_count:'24'}).forEach(([id,value])=>{form.elements[id].value=value;});
  form.elements.botcheck.checked=Boolean(honeypot);
+ new Element('quote-captcha');
+ if (captcha !== null) { form.elements['h-captcha-response']=new Element(); form.elements['h-captcha-response'].value=captcha; }
  new Element('course-matrix');
  const statuses={'[data-plan-status]':new Element(),'[data-recommendation-status]':new Element()};
  form.querySelectorAll=selector=>selector==='[name="selected_courses"]'?controls:selector==='[data-recommendation]'?recommendations:[];
  form.querySelector=()=>submit;
  const document={activeElement:null,querySelector:selector=>({'#quote-form':form,'[data-summary-list]':summary,'#form-message':message,'#quote-confirmation':confirmation,...statuses})[selector],getElementById:id=>nodes.get(id),createElement:()=>new Element()};
  class TestFormData { constructor() {this.data=new Map(Object.entries(form.elements).map(([key,el])=>[key,el.value]));} set(key,value) {this.data.set(key,value);} get(key) {return this.data.get(key);} }
- const context=vm.createContext({COURSES,INDUSTRIES,TIERS,SITE_CONFIG:{formEndpoint:endpoint,inquiryEmail:emailAddress,web3formsAccessKey:accessKey},isQuoteServiceConfigured:()=>isQuoteServiceConfigured({formEndpoint:endpoint,inquiryEmail:emailAddress,web3formsAccessKey:accessKey}),document,location:{search:query},URLSearchParams,Set,FormData:TestFormData,AbortSignal,readSelection:()=>initial,saveSelection:ids=>{saved=ids;},fetch:async(...args)=>{requests.push(args);return response?await response(...args):{ok:true,json:async()=>({success:true})};}});
+ const context=vm.createContext({COURSES,INDUSTRIES,TIERS,SITE_CONFIG:{formEndpoint:endpoint,inquiryEmail:emailAddress,web3formsAccessKey:accessKey},isQuoteServiceConfigured:()=>isQuoteServiceConfigured({formEndpoint:endpoint,inquiryEmail:emailAddress,web3formsAccessKey:accessKey}),document,window:{hcaptcha:{reset:()=>{captchaResets++;}}},location:{search:query},URLSearchParams,Set,FormData:TestFormData,AbortSignal,readSelection:()=>initial,saveSelection:ids=>{saved=ids;},fetch:async(...args)=>{requests.push(args);return response?await response(...args):{ok:true,json:async()=>({success:true})};}});
  new vm.Script(code).runInContext(context);
- return {form,controls,summary,message,confirmation,submit,nodes,document,recommendations,requests,get saved(){return saved;},send:()=>form.emit('submit')};
+ return {form,controls,summary,message,confirmation,submit,nodes,document,recommendations,requests,get saved(){return saved;},get captchaResets(){return captchaResets;},send:()=>form.emit('submit')};
 }
 
 test('invalid entries focus the first error and never issue a request',async()=>{
@@ -62,6 +64,7 @@ test('a successful POST contains the course IDs and summary, then clears storage
  assert.equal(options.body.get('access_key'),'11111111-1111-4111-8111-111111111111');
  assert.equal(options.body.get('email'),'test@example.com');
  assert.equal(options.body.get('replyto'),'test@example.com');
+ assert.equal(options.body.get('h-captcha-response'),'test-hcaptcha-token');
  assert.equal(options.method,'POST');assert.equal(options.body.get('selected_courses'),'daci-level-1');
  assert.equal(options.body.get('selected_courses_summary'),'DACI Level 1');
  assert.match(options.body.get('message'),/Programs: DACI Level 1/);
@@ -112,4 +115,15 @@ test('a provider rejection with HTTP 200 never shows success',async()=>{
 
 test('an unexpected endpoint cannot receive visitor data',async()=>{
  const f=fixture({endpoint:'https://example.com/submit'});await f.send();assert.equal(f.requests.length,0);
+});
+
+test('missing or expired hCaptcha blocks requests and focuses verification',async()=>{
+ const f=fixture({captcha:''});await f.send();assert.equal(f.requests.length,0);assert.equal(f.document.activeElement.id,'quote-captcha');assert.ok(f.nodes.has('quote-captcha-error'));assert.equal(f.confirmation.hidden,true);
+ f.form.elements['h-captcha-response'].value='fresh-token';await f.send();assert.equal(f.requests.length,1);assert.equal(f.requests[0][1].body.get('h-captcha-response'),'fresh-token');
+});
+test('an unloaded hCaptcha widget fails closed without losing entries',async()=>{
+ const f=fixture({captcha:null});await f.send();assert.equal(f.requests.length,0);assert.equal(f.form.elements.organization_name.value,'Example Org');assert.equal(f.saved[0],'daci-level-1');
+});
+test('failed submissions require a fresh captcha token before retrying',async()=>{
+ const f=fixture({response:()=>({ok:false,json:async()=>({success:false})})});await f.send();assert.equal(f.captchaResets,1);assert.equal(f.form.elements['h-captcha-response'].value,'');await f.send();assert.equal(f.requests.length,1);assert.equal(f.submit.disabled,false);
 });

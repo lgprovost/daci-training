@@ -49,5 +49,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px
 .confirmation h2, .confirmation .icon { color: var(--color-emerald); }
 .confirmation .icon { width: 48px; height: 48px; margin-bottom: 24px; }
 .honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.captcha-field { margin-block: 24px; }
+.captcha-field > p { margin-bottom: 12px; }
 @media (max-width: 1023px) { .quote-layout { grid-template-columns: minmax(0,1fr) 300px; gap: 24px; } .form-step { padding: 24px; } .form-grid { grid-template-columns: 1fr; } }
 @media (max-width: 767px) { .quote-layout { grid-template-columns: 1fr; } .quote-sidebar { position: static; } .form-step { padding: 24px 16px; } .quick-path { padding: 24px; } .quick-path h2 { font-size: 1.5rem; } .form-step > legend { font-size: 1rem; } .confirmation { padding: 24px; } }
