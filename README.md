@@ -1,6 +1,12 @@
 # DACI website
 
-Current revision: November 14, 2026. Thirteen static HTML pages: six main pages, six permanent DACI program detail pages, and a branded 404. Live onsite training nationwide; all contact and quote follow-up is by email.
+Client-approved design, November 15, 2026. Thirteen static HTML pages: six main pages, six permanent DACI program detail pages, and a branded 404. Live onsite training nationwide; all contact and quote follow-up is by email.
+
+DACI has not launched a public website. The existing Sites publication is an owner-private review preview. Production hosting will be GoDaddy Web Hosting with cPanel, using `dacitraining.com`.
+
+The navigation label is **Why DACI**, retaining the `/about` route. The founder photo/biography/credentials section has been removed from that page. No replacement imagery has been added.
+
+Editable design and prototypes: [DACI Figma file](https://www.figma.com/design/ANVLLoJ53XnhfqFIdd5oib). Client follow-ups, QR destinations, and the editorial copy review are included in `docs/`.
 
 ## Build and verify
 
@@ -31,13 +37,17 @@ Level 3 is restricted to law enforcement/corrections and is not automatically in
 1. Public inquiry email confirmed: `info@dacitraining.com`. Confirm the mailbox is active and receiving messages.
 2. Create a Web3Forms access key for the confirmed recipient inbox and set `web3formsAccessKey`; the `formEndpoint` is https://api.web3forms.com/submit. Send a real delivery-and-reply test. The current page discloses that submission is unavailable and blocks requests while the Web3Forms access key is pending.
 3. Connect domain DNS and public hosting access for `dacitraining.com`; canonical metadata alone does not connect a domain. The existing Sites review audience remains private. Test all seven QR destinations before printing.
-4. Approve provisional duration and curriculum assumptions, including the scope and eligibility of Level 2’s approved 8-hour and 16-hour certification options. The client follow-up report and QR destination CSV are supplied alongside this repository.
-5. The user-supplied founder photo is installed for provisional use. Replace its versioned asset if a new headshot is approved.
+4. Confirm remaining course-delivery details, including the scope and eligibility of Level 2’s approved 8-hour and 16-hour certification options. Design approval does not confirm outstanding lesson-plan or certification details. See `docs/client-follow-up.html`.
+5. Prepare GoDaddy-compatible routing for extensionless page URLs and the branded 404, configure HTTPS and the domain, and preserve email DNS records. The current `_redirects` and `netlify.toml` files target other hosting workflows and do not configure cPanel.
 6. Run `node scripts/check.mjs --launch` once contact settings are complete. It is expected to fail until then.
 
 ## Hosting and assets
 
 `.openai/hosting.json` retains the existing Sites project identity. `dist/` is the deployment directory. Netlify and static-host route rules cover all six permanent program pages. All canonical URLs and sitemap routes use the intended domain.
+
+Build locally with Node.js 20 or later; upload the **contents** of `dist/` to the GoDaddy domain's document root when the production routing and launch checks are ready. No Node.js server or database is needed for the current static site. Do not upload the source repository, `.git/`, or private review configuration as the document root. This repository does not automatically deploy to GoDaddy or launch the public site.
+
+A universal QR entry page with multiple-program selection was discussed but has not been implemented. The current QR CSV lists individual program pages; confirm the final card workflow before printing.
 
 The logo and its adaptations are unchanged. Social sharing uses `daci-og-share-card-v3.png` with nationwide wording; the code-native SVG source is retained. Workshop photos are representative generated imagery. See `ASSET-PROVENANCE.json`.
 
