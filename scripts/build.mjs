@@ -38,7 +38,7 @@ function header() {
 <a class="brand" href="/"><img src="/assets/brand/daci-logo-navbar-v2.svg" width="220" height="64" fetchpriority="high" alt="DACI — De-Escalation &amp; Crisis Intervention home"></a>
 <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="navigation-drawer" aria-label="Open navigation">${icon('menu')}</button>
 <div class="nav-shell" data-nav-shell id="navigation-drawer"><nav class="primary-nav" aria-label="Primary"><a href="/training-courses">Training &amp; Courses</a><a href="/industries">Industries</a><a href="/about">Why DACI</a><a href="/request-quote">Request a Quote</a></nav>
-<div class="header-actions"><a class="button button-outline" href="/trainer-login">Trainer Login</a><a class="button button-primary" href="/request-quote">Request a Quote</a></div></div>
+<div class="header-actions"><a class="button button-outline" href="/trainer-login">Trainer Login</a></div></div>
 </div></header><div class="menu-backdrop" data-menu-backdrop></div>`;
 }
 function contactEmail() { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.inquiryEmail) ? `<a href="mailto:${esc(config.inquiryEmail)}" data-inquiry-email>${esc(config.inquiryEmail)}</a>` : '<span class="contact-pending">Email contact details coming soon.</span>'; }
