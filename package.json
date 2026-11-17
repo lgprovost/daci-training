@@ -7,7 +7,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "start": "node scripts/serve.mjs",
-    "test": "node scripts/check.mjs && node scripts/test-form.mjs",
+    "test": "node scripts/check.mjs && node scripts/test-form.mjs && node scripts/test-sticky-bar.mjs",
     "check:launch": "node scripts/check.mjs --launch"
   },
   "engines": { "node": ">=20" }

@@ -1,5 +1,4 @@
 import { hydrateContacts, sitePath } from './config.js';
-import './sticky-bar.js';
 
 hydrateContacts();
 const nav = document.querySelector('[data-nav-shell]');
